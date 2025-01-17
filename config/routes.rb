@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      get "code_submissions/index"
+      post "code_submissions/create"
+      get '/show/:id', to: 'recipes#show'
+      get 'prompts/today', to: 'prompts#today'
+    end
+  end
 
   root 'homepage#index'
+  get '/*path' => 'homepage#index'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

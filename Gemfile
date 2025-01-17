@@ -23,6 +23,8 @@ gem "jbuilder"
 
 gem 'stringio', '3.1.2'
 
+gem 'pry-rails'
+
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
