@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Data Models
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```mermaid
+erDiagram
+User ||--o{ CodeSubmission : "has many"
+Prompt ||--o{ CodeSubmission : "has many"
+Prompt ||--|| TestSuite : "has one"
+TestSuite ||--o{ TestCase : "contains many"
+CodeSubmission ||--|| TestResult : "has one"
+```
