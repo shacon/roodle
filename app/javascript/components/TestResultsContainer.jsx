@@ -11,8 +11,7 @@ const TestResultsContainer = ({results}) => {
       let result;
       if (currentResult.passed) {
         result = 'passed';
-        console.log('passed is here')
-      } else if (!currentResult.actual_output.run.stderr) {
+      } else if (!currentResult.stderr) {
         result = 'failed';
       } else {
         result = 'exception';
