@@ -7,13 +7,22 @@ class Api::V1::CodeSubmissionsController < ApplicationController
     puts "params: #{params}"
     puts "********"
     puts submission_params[:submission]
-    # SubmissionEvaluator(submission)
-    # class SubmissionResults - has test1
-    # Code
-    # Next steps:
-    # * grab today's prompt
-    # * run the tests in that prompt against the submission - probably create a service for this
-    # * will need to clean up submission to make it able to convert to code - use eval()?
+    prompt = Prompt.for_today
+    submission = CodeSubmission.new(
+      content: submission_params[:submission],
+      user: User.first, # TODO
+      prompt: prompt
+    )
+    
+    if submission.save
+      # Run tests and create test results
+      test_runner = CodeTestRunner.new(submission.content, submission.prompt_id)
+      
+      results = test_runner.generate_result_hash
+      render json: { results: results }
+    else
+      render json: { errors: submission.errors.full_messages }, status: :unprocessable_entity
+    end
 
   end
 

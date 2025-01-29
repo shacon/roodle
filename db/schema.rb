@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_17_200950) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_17_203424) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,6 +44,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_17_200950) do
     t.index ["test_suite_id"], name: "index_test_cases_on_test_suite_id"
   end
 
+  create_table "test_results", force: :cascade do |t|
+    t.bigint "code_submission_id", null: false
+    t.jsonb "results"
+    t.string "error_message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code_submission_id"], name: "index_test_results_on_code_submission_id"
+  end
+
   create_table "test_suites", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -59,4 +68,5 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_17_200950) do
 
   add_foreign_key "code_submissions", "prompts"
   add_foreign_key "code_submissions", "users"
+  add_foreign_key "test_results", "code_submissions"
 end

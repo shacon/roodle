@@ -1,2 +1,66 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+
+.main-text {
+  color: #353030;
+  font-family: 'circular';
+}
+
+.prompt-and-results-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px;
+}
+.code-runner-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.test-results-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(40px, 80px));
+  gap: 10px;
+  padding: 10px;
+}
+
+.single-result-box {
+  aspect-ratio: 1 / 1;
+  border: solid black;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+
+  &.test-passed {
+    background: rgb(58,135,180);
+    background: linear-gradient(90deg, rgba(58,135,180,0.17833070728291311) 0%, rgba(202,255,191,1) 100%, rgba(202,255,191,1) 100%);
+  }
+  &.test-failed {
+    background: rgb(58,135,180);
+    background: linear-gradient(90deg, rgba(58,135,180,0.17833070728291311) 0%, rgba(255,173,173,1) 32%, rgba(252,69,83,0.25115983893557425) 100%);
+  }
+  &.test-exception {
+    background: rgb(180,168,58);
+    background: linear-gradient(90deg, rgba(180,168,58,0.17833070728291311) 0%, rgba(253,255,182,1) 100%, rgba(229,255,191,1) 100%);
+  }
+}
+
+@media (min-width: 768px) {
+  .code-runner-container {
+    flex-direction: row;
+  }
+}
+
+.code-editor {
+  flex: 1;
+  min-width: 0;
+}
+
+.test-results-container {
+  flex: 1;
+  min-width: 0;
+}

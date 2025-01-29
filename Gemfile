@@ -23,6 +23,8 @@ gem "jbuilder"
 
 gem 'stringio', '3.1.2'
 
+gem 'byebug'
+
 gem 'pry-rails'
 
 
@@ -57,3 +59,5 @@ group :development do
   gem "web-console"
 end
 
+
+gem "httparty", "~> 0.22.0"
