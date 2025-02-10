@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_17_203424) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_29_222221) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_enum :data_type, [
+    "string",
+    "integer",
+    "float",
+    "boolean",
+    "array",
+    "hash",
+  ], force: :cascade
 
   create_table "code_submissions", force: :cascade do |t|
     t.text "content"
@@ -36,11 +45,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_17_203424) do
   end
 
   create_table "test_cases", force: :cascade do |t|
-    t.text "input"
-    t.text "expected_output"
     t.bigint "test_suite_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "input_value"
+    t.enum "expected_output_type", enum_type: "data_type"
+    t.jsonb "expected_output_value"
+    t.enum "input_type", enum_type: "data_type"
     t.index ["test_suite_id"], name: "index_test_cases_on_test_suite_id"
   end
 

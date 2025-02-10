@@ -28,6 +28,7 @@ gem 'byebug'
 gem 'pry-rails'
 
 
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -54,9 +55,13 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 end
 
+gem 'activerecord-postgres_enum'
+
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
 end
 
 

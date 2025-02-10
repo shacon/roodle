@@ -1,5 +1,4 @@
 class CodeTestRunner
-  PISTON_API_URL = 'https://emkc.org/api/v2/piston/execute'
   
   def initialize(content, prompt_id)
     @prompt = Prompt.find(prompt_id)
@@ -14,8 +13,8 @@ class CodeTestRunner
       actual_output = data["run"]["output"]
       
       result = {
-        passed: compare_output(test_case.expected_output, actual_output),
-        expected_output: test_case.expected_output,
+        passed: compare_output(test_case.expected_output_value, actual_output),
+        expected_output_value: test_case.expected_output_value,
         actual_output: actual_output,
         stderr: response["run"]["stderr"]
       }
@@ -28,39 +27,18 @@ class CodeTestRunner
   def compare_output(expected, actual)
     expected.strip == actual.strip
   end
-  
-  class PistonClient
-    def self.call(input:, content:)
-      normalized_code = content.gsub("\r\n", "\n")
-      execution_line = %Q[\nputs solve(ARGV[0])]
-      
-      final_code = normalized_code + execution_line
-      payload = {
-        language: "ruby",
-        version: "3.0.1",
-        files: [
-          {
-            name: "solution.rb",
-            content: final_code
-          }
-        ],
-        stdin: @content,
-        args: [input],
-        compile_timeout: 10000,
-        run_timeout: 3000,
-        compile_memory_limit: -1,
-        run_memory_limit: -1
-      }
-        
-      response = HTTParty.post(PISTON_API_URL,
-      headers: {
-        'Content-Type' => 'application/json'
-      },
-        body: payload.to_json
-      )
 
-      response
-    end
-  end
+  # def compare_output(expected_type, expected_value, actual)
+  #   # expected_type will be stored on the testcase as expected_output_type
+  #   case expected_type
+  #   when 'string'
+  #     expected_value.strip == actual.strip
+  #   when 'number'
+  #     expected_value.to_f == actual.to_f
+  #   when 'array'
+  #     # Maybe need to parse JSON if coming back as string
+  #     # Maybe need to handle order/no order
+  #   end
+  # end
+  
 end
-   
