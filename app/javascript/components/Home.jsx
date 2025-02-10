@@ -5,7 +5,6 @@ import TestResultsContainer from "./TestResultsContainer";
 import CodeEditor from "./Editor";
 
 const Home = () => {
-  const [answer, setAnswer] = useState("");
   const [prompt, setPrompt] = useState(null);
   const [results, setResults] = useState([]);
   const [storageKey, setStorageKey] = useState("");
@@ -58,15 +57,10 @@ const Home = () => {
   }, []);
 
   const handleSubmit = async (answer) => {
-    console.log("this is getting run");
-    // console.log("e ", e);
-    // e.preventDefault();
-
     const url = "/api/v1/code_submissions/create";
     const token = document.querySelector('meta[name="csrf-token"]').content;
     const body = { code_submission: { submission: answer } };
-    console.log("body", body);
-    console.log("JSON.stringify(body)", JSON.stringify(body));
+
     try {
       const response = await fetch(url, {
         method: "POST",
@@ -98,15 +92,7 @@ const Home = () => {
       <div className="code-runner-container">
         <div className="code-editor">
           <CodeEditor onSubmit={handleSubmit}></CodeEditor>
-          {/* <textarea
-            value={answer}
-            onChange={(e) => setAnswer(e.target.value)}
-            name="query"
-          /> */}
           <br />
-          {/* <button onClick={handleSubmit} type="button">
-            Submit
-          </button> */}
         </div>
         <TestResultsContainer results={allResults} />
       </div>
