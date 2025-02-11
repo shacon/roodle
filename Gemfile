@@ -57,11 +57,15 @@ end
 
 gem 'activerecord-postgres_enum'
 
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
+end
+
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-  gem 'rspec-rails'
-  gem 'factory_bot_rails'
 end
 
 

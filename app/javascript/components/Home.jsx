@@ -60,6 +60,7 @@ const Home = () => {
     const url = "/api/v1/code_submissions/create";
     const token = document.querySelector('meta[name="csrf-token"]').content;
     const body = { code_submission: { submission: answer } };
+    console.log("this is what we send to api: ", JSON.stringify(body));
 
     try {
       const response = await fetch(url, {
@@ -83,7 +84,10 @@ const Home = () => {
       <div className="prompt-section main-text">
         <h3 className="main-text">Today's Prompt: </h3>
         {prompt ? (
-          <h4 className="main-text">{prompt.content}</h4>
+          <div>
+            <h4 className="main-text">{prompt.content}</h4>
+            <h5 className="example-text">{prompt.example}</h5>
+          </div>
         ) : (
           <p>Loading...</p>
         )}

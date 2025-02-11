@@ -14,7 +14,8 @@ const CodeEditor = ({ onSubmit }) => {
   return (
     <div>
       <CodeMirror
-        value={answer}
+        value={`def solve(input)
+end`}
         onChange={setAnswer}
         height="200px"
         extensions={[StreamLanguage.define(ruby)]}
