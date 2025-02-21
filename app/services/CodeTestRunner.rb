@@ -1,5 +1,4 @@
 class CodeTestRunner
-  
   def initialize(content, prompt_id)
     @prompt = Prompt.find(prompt_id)
     @content = content
@@ -11,7 +10,7 @@ class CodeTestRunner
       response = PistonClient.call(input: test_case.prepared_input, content: @content)
       parsed_response = JSON.parse(response.body)
       actual_output = parsed_response["run"]["output"]
-      
+
       result = {
         passed: compare_output(test_case.input_type, test_case.expected_output_value, actual_output),
         expected_output_value: test_case.expected_output_value,
@@ -20,7 +19,7 @@ class CodeTestRunner
       }
       results << result
     end
-    
+
     results
   end
 
@@ -36,5 +35,4 @@ class CodeTestRunner
       false
     end
   end
-  
 end

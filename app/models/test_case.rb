@@ -1,6 +1,6 @@
 class TestCase < ApplicationRecord
   belongs_to :test_suite
-  
+
   def prepared_input
     case input_type
     when 'string'
@@ -13,5 +13,4 @@ class TestCase < ApplicationRecord
       input_value.to_s
     end
   end
-
 end
