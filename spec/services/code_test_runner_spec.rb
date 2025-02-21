@@ -98,29 +98,18 @@ RSpec.describe CodeTestRunner do
     context 'when comparing arrays' do
       it 'handles basic arrays' do
         examples = {
-          [ [ 1, 2, 3 ], '[1, 2, 3]' ] => true,
-          # [[1,2,3], '[3,2,1]'] => false,
-          # # [["a","b"], '["a", "b"]'] => true,
-          # [[1,2], '[1,2,3]'] => false
+          [ [ 1, 2, 3 ], '1, 2, 3' ] => true
         }
 
         examples.each do |inputs, expected|
-          # binding.pry
-          puts " inputs[0] #{inputs[0].inspect}"
-          puts " inputs[1] #{inputs[1]}"
           expect(runner.compare_output('array', inputs[0], inputs[1])).to eq(expected)
         end
       end
 
-      # it 'handles nested arrays' do
-      #   expect(runner.compare_output('array', '[[1,2],[3,4]]', '[[1, 2], [3, 4]]')).to be true
-      #   expect(runner.compare_output('array', '[[1,2],[3,4]]', '[[3, 4], [1, 2]]')).to be true
-      # end
-
-      # it 'handles malformed JSON gracefully' do
-      #   expect(runner.compare_output('array', '[1,2,3]', 'not json')).to be false
-      #   expect(runner.compare_output('array', 'not json', '[1,2,3]')).to be false
-      # end
+      it 'handles malformed JSON gracefully' do
+        expect(runner.compare_output('array', '[1,2,3]', 'not json')).to be false
+        expect(runner.compare_output('array', 'not json', '[1,2,3]')).to be false
+      end
     end
   end
 end

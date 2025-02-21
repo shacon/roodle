@@ -21,11 +21,11 @@ gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
-gem 'stringio', '3.1.2'
+gem "stringio", "3.1.2"
 
-gem 'byebug'
+gem "byebug"
 
-gem 'pry-rails'
+gem "pry-rails"
 
 
 
@@ -55,12 +55,12 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 end
 
-gem 'activerecord-postgres_enum'
+gem "activerecord-postgres_enum"
 
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'factory_bot_rails'
-  gem 'faker'
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem "faker"
 end
 
 group :development do

@@ -25,11 +25,11 @@ class CodeTestRunner
 
   def compare_output(expected_type, expected_value, actual)
     case expected_type
-    when 'string'
+    when "string"
       expected_value.strip == actual.strip
-    when 'float' || 'integer'
+    when "float" || "integer"
       expected_value.to_f == actual.to_f
-    when 'array'
+    when "array"
       expected_value == actual.split.map(&:to_i)
     else
       false

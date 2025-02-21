@@ -3,11 +3,11 @@ class TestCase < ApplicationRecord
 
   def prepared_input
     case input_type
-    when 'string'
+    when "string"
       input_value.to_s
-    when 'array'
-      input_value.join(' ')
-    when 'hash'
+    when "array"
+      input_value.join(" ")
+    when "hash"
       input_value.to_json
     else
       input_value.to_s

@@ -1,5 +1,5 @@
 class PistonClient
-  PISTON_API_URL = 'https://emkc.org/api/v2/piston/execute'
+  PISTON_API_URL = "https://emkc.org/api/v2/piston/execute"
 
   def self.call(input:, content:)
     normalized_code = content.gsub("\r\n", "\n")
@@ -25,7 +25,7 @@ class PistonClient
 
     response = HTTParty.post(PISTON_API_URL,
     headers: {
-      'Content-Type' => 'application/json'
+      "Content-Type" => "application/json"
     },
       body: payload.to_json
     )
