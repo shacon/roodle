@@ -3,10 +3,6 @@ class Api::V1::CodeSubmissionsController < ApplicationController
   end
 
   def create
-    puts "this is getting hit"
-    puts "params: #{params}"
-    puts "********"
-    puts submission_params[:submission]
     prompt = Prompt.for_today
     submission = CodeSubmission.new(
       content: submission_params[:submission],
@@ -15,7 +11,6 @@ class Api::V1::CodeSubmissionsController < ApplicationController
     )
     
     if submission.save
-      # Run tests and create test results
       test_runner = CodeTestRunner.new(submission.content, submission.prompt_id)
       
       results = test_runner.generate_result_hash

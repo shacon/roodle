@@ -1,38 +1,44 @@
-import React, { useEffect } from "react";
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import ResultBox from './ResultBox';
+import ResultBox from "./ResultBox";
 
-const TestResultsContainer = ({results}) => {
-
+const TestResultsContainer = ({ results, loading }) => {
   const gridItems = Array.from({ length: 25 }, (_, index) => {
     if (index < results.length) {
-      const currentResult = results[index]
+      const currentResult = results[index];
       let result;
       if (currentResult.passed) {
-        result = 'passed';
+        result = "passed";
       } else if (!currentResult.stderr) {
-        result = 'failed';
+        result = "failed";
       } else {
-        result = 'exception';
+        result = "exception";
       }
+
       return { id: index, result };
     } else {
-      return { id: index, result: null };
+      const loadingItemIndexes = Array.from(
+        { length: results.length + 4 - results.length + 1 },
+        (_, i) => results.length + i
+      );
+      const loading = loadingItemIndexes.includes(index);
+      return { id: index, result: null, loading: loading };
     }
   });
   return (
-    <div className="test-results test-results-grid">
+    <div className="test-results test-results-grid placeholder-glow">
       {gridItems.map((item) => (
         <ResultBox
-         className="row"
+          className={`${
+            loading && item.loading ? "placeholder result-placeholder" : ""
+          }`}
           key={item.id}
           result={item.result}
-      ></ResultBox>
+        ></ResultBox>
       ))}
     </div>
-
-  )
+  );
 };
 
 TestResultsContainer.propTypes = {
@@ -40,6 +46,3 @@ TestResultsContainer.propTypes = {
 };
 
 export default TestResultsContainer;
-
-
-
