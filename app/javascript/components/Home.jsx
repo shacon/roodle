@@ -8,8 +8,10 @@ const Home = () => {
   const [prompt, setPrompt] = useState(null);
   const [results, setResults] = useState([]);
   const [storageKey, setStorageKey] = useState("");
+  const [attemptCountKey, setAttemptCountKey] = useState("");
   const [allResults, setAllResults] = useState([]);
   const [isPromptLoaded, setIsPromptLoaded] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (isPromptLoaded) {
@@ -43,6 +45,8 @@ const Home = () => {
           setIsPromptLoaded(true);
           const key = `prompt_${data.id}_results`;
           setStorageKey(key);
+          const attemptCountKey = `prompt_${data.id}_attempts`;
+          setAttemptCountKey(attemptCountKey);
 
           const storedResults = JSON.parse(localStorage.getItem(key)) || [];
           setAllResults(storedResults);
@@ -63,6 +67,7 @@ const Home = () => {
     console.log("this is what we send to api: ", JSON.stringify(body));
 
     try {
+      setLoading(true);
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -74,6 +79,7 @@ const Home = () => {
 
       const data = await response.json();
       setResults(data.results);
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -95,10 +101,14 @@ const Home = () => {
       <br />
       <div className="code-runner-container">
         <div className="code-editor">
-          <CodeEditor onSubmit={handleSubmit}></CodeEditor>
+          <CodeEditor
+            onSubmit={handleSubmit}
+            loading={loading}
+            attemptCountKey={attemptCountKey}
+          ></CodeEditor>
           <br />
         </div>
-        <TestResultsContainer results={allResults} />
+        <TestResultsContainer results={allResults} loading={loading} />
       </div>
     </div>
   );

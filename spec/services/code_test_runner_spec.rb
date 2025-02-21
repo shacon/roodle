@@ -60,12 +60,12 @@ RSpec.describe CodeTestRunner do
     context 'when comparing strings' do
       it 'handles whitespace variations' do
         examples = {
-          ["Hello", "Hello"] => true,
-          ["Hello ", " Hello"] => true,
-          ["Hello\n", "Hello"] => true,
-          ["Hello\r\n", "Hello"] => true,
+          [ "Hello", "Hello" ] => true,
+          [ "Hello ", " Hello" ] => true,
+          [ "Hello\n", "Hello" ] => true,
+          [ "Hello\r\n", "Hello" ] => true,
           # ["Hello  World", "Hello World"] => true,
-          ["Hello", "World"] => false
+          [ "Hello", "World" ] => false
         }
 
         examples.each do |inputs, expected|
@@ -81,12 +81,12 @@ RSpec.describe CodeTestRunner do
     context 'when comparing numbers' do
       it 'handles different numeric representations' do
         examples = {
-          ["1.0", "1"] => true,
-          ["1.00", "1.0"] => true,
-          [" 42", "42.0 "] => true,
-          ["3.14159", "3.14159000"] => true,
-          ["1", "2"] => false,
-          ["1.1", "1.2"] => false
+          [ "1.0", "1" ] => true,
+          [ "1.00", "1.0" ] => true,
+          [ " 42", "42.0 " ] => true,
+          [ "3.14159", "3.14159000" ] => true,
+          [ "1", "2" ] => false,
+          [ "1.1", "1.2" ] => false
         }
 
         examples.each do |inputs, expected|
@@ -98,29 +98,18 @@ RSpec.describe CodeTestRunner do
     context 'when comparing arrays' do
       it 'handles basic arrays' do
         examples = {
-          [[1,2,3], '[1, 2, 3]'] => true,
-          # [[1,2,3], '[3,2,1]'] => false,
-          # # [["a","b"], '["a", "b"]'] => true,
-          # [[1,2], '[1,2,3]'] => false
+          [ [ 1, 2, 3 ], '1, 2, 3' ] => true
         }
 
         examples.each do |inputs, expected|
-          # binding.pry
-          puts " inputs[0] #{inputs[0].inspect}"
-          puts " inputs[1] #{inputs[1]}"
           expect(runner.compare_output('array', inputs[0], inputs[1])).to eq(expected)
         end
       end
 
-      # it 'handles nested arrays' do
-      #   expect(runner.compare_output('array', '[[1,2],[3,4]]', '[[1, 2], [3, 4]]')).to be true
-      #   expect(runner.compare_output('array', '[[1,2],[3,4]]', '[[3, 4], [1, 2]]')).to be true
-      # end
-
-      # it 'handles malformed JSON gracefully' do
-      #   expect(runner.compare_output('array', '[1,2,3]', 'not json')).to be false
-      #   expect(runner.compare_output('array', 'not json', '[1,2,3]')).to be false
-      # end
+      it 'handles malformed JSON gracefully' do
+        expect(runner.compare_output('array', '[1,2,3]', 'not json')).to be false
+        expect(runner.compare_output('array', 'not json', '[1,2,3]')).to be false
+      end
     end
   end
 end

@@ -97,3 +97,17 @@ button {
     rgba(215, 219, 149, 1) 100%
   );
 }
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.result-placeholder {
+  background: linear-gradient(
+    to right,
+    rgba(202, 255, 191, 1),
+    /* green */ rgba(255, 173, 173, 1),
+    /* red */ rgba(253, 255, 182, 1) /* yellow */
+  );
+}
