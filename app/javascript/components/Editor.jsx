@@ -1,12 +1,23 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 
 import { ruby } from "@codemirror/legacy-modes/mode/ruby";
 import CodeMirror from "@uiw/react-codemirror";
 import { StreamLanguage } from "@codemirror/language";
 
-const CodeEditor = ({ attemptCountKey, onSubmit, loading }) => {
+const CodeEditor = ({ onSubmit, loading }) => {
   const [answer, setAnswer] = useState("");
+  const [attemptCountKey, setAttemptCountKey] = useState("");
   const attempts = localStorage.getItem(attemptCountKey) || 0;
+
+  useEffect(() => {
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString("en-US");
+    const formattedAttemptCountKey = `roodle_${formattedDate}_attempts`;
+    setAttemptCountKey(formattedAttemptCountKey);
+    console.log("in useffect");
+    console.log(`formattedAttemptCountKey: ${formattedAttemptCountKey}`);
+    console.log(`attemptCountKey: ${attemptCountKey}`);
+  }, []);
 
   const handleSubmit = () => {
     localStorage.setItem(attemptCountKey, Number(attempts) + 1);
