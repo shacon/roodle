@@ -27,7 +27,7 @@ Spin up the app
 
 1. [DONE] Parse code before sending it to Piston so it runs properly 
 2. [] Refactor so that only one api call needs to be made
-3. [] In UI, show user that call has been made and is waiting for response, disable button
+3. [DONE] In UI, show user that call has been made and is waiting for response, disable button
 4. [] Write tests
 5. [] Add upload process for data - rake task that ingests prompt data
 6. [] No need to store anything from the user - that should all be in localStorage - get rid of submissions table?

@@ -8,7 +8,6 @@ const Home = () => {
   const [prompt, setPrompt] = useState(null);
   const [results, setResults] = useState([]);
   const [storageKey, setStorageKey] = useState("");
-  const [attemptCountKey, setAttemptCountKey] = useState("");
   const [allResults, setAllResults] = useState([]);
   const [isPromptLoaded, setIsPromptLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -45,8 +44,6 @@ const Home = () => {
           setIsPromptLoaded(true);
           const key = `prompt_${data.id}_results`;
           setStorageKey(key);
-          const attemptCountKey = `prompt_${data.id}_attempts`;
-          setAttemptCountKey(attemptCountKey);
 
           const storedResults = JSON.parse(localStorage.getItem(key)) || [];
           setAllResults(storedResults);
@@ -64,7 +61,6 @@ const Home = () => {
     const url = "/api/v1/code_submissions/create";
     const token = document.querySelector('meta[name="csrf-token"]').content;
     const body = { code_submission: { submission: answer } };
-    console.log("this is what we send to api: ", JSON.stringify(body));
 
     try {
       setLoading(true);
@@ -80,9 +76,7 @@ const Home = () => {
       const data = await response.json();
       setResults(data.results);
       setLoading(false);
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   return (
@@ -101,11 +95,8 @@ const Home = () => {
       <br />
       <div className="code-runner-container">
         <div className="code-editor">
-          <CodeEditor
-            onSubmit={handleSubmit}
-            loading={loading}
-            attemptCountKey={attemptCountKey}
-          ></CodeEditor>
+          {/* optionally show last test case failure- input: output: expected: */}
+          <CodeEditor onSubmit={handleSubmit} loading={loading}></CodeEditor>
           <br />
         </div>
         <TestResultsContainer results={allResults} loading={loading} />
