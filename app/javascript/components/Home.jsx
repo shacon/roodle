@@ -11,12 +11,20 @@ const Home = () => {
   const [allResults, setAllResults] = useState([]);
   const [isPromptLoaded, setIsPromptLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [lastTestCaseResults, setLastTestCaseResults] = useState({});
+  const [allTestsPassed, setAllTestsPassed] = useState(false);
 
   useEffect(() => {
     if (isPromptLoaded) {
       localStorage.setItem(storageKey, JSON.stringify(allResults));
+      const today = new Date();
+      const formattedDate = today.toLocaleDateString("en-US");
+      localStorage.setItem(
+        `lastTestResults_${formattedDate}`,
+        JSON.stringify(lastTestCaseResults)
+      );
     }
-  }, [allResults]);
+  }, [allResults, lastTestCaseResults]);
 
   useEffect(() => {
     if (isPromptLoaded) {
@@ -27,7 +35,6 @@ const Home = () => {
         } catch (e) {
           storedResults = [];
         }
-
         const updatedResults = [...storedResults, ...results];
         setAllResults(updatedResults);
       }
@@ -46,7 +53,25 @@ const Home = () => {
           setStorageKey(key);
 
           const storedResults = JSON.parse(localStorage.getItem(key)) || [];
+          const today = new Date();
+          const formattedDate = today.toLocaleDateString("en-US");
+          const testKey = `lastTestResults_${formattedDate}`;
+          const savedTestResults = localStorage.getItem(testKey);
+          if (savedTestResults) {
+            setLastTestCaseResults(JSON.parse(savedTestResults));
+          }
           setAllResults(storedResults);
+          const numTestCases = 5;
+
+          // Check if the last submission's tests all passed
+          const latestResults = storedResults.slice(-numTestCases);
+          const allTestsPassed =
+            latestResults.length === numTestCases &&
+            latestResults.every((r) => r.passed);
+
+          console.log("All tests passed:", allTestsPassed);
+          setAllTestsPassed(allTestsPassed); // Add this state variable
+          // TODO - check stored results to see if last result was all passing and if so show passed message
         } else {
           throw new Error("Network response was not ok.");
         }
@@ -64,6 +89,7 @@ const Home = () => {
 
     try {
       setLoading(true);
+      setLastTestCaseResults({});
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -75,8 +101,34 @@ const Home = () => {
 
       const data = await response.json();
       setResults(data.results);
+      console.log("data.results", data.results);
+      const lastFailed = [...data.results]
+        .reverse()
+        .find((result) => result.passed === false);
+      console.log("last failed", lastFailed);
+      if (lastFailed) {
+        setLastTestCaseResults({
+          expected: lastFailed.expected_output_value,
+          output: lastFailed.actual_output,
+          input: lastFailed.input,
+        });
+      }
+      const numTestCases = 5;
+
+      // // Check if the last submission's tests all passed
+      // const latestResults = data.results;
+      const latestResults = data.results.slice(-numTestCases);
+      const allTestsPassed =
+        latestResults.length === numTestCases &&
+        latestResults.every((r) => r.passed);
+
+      console.log("All tests passed:", allTestsPassed);
+      setAllTestsPassed(allTestsPassed);
+      console.log("lastTestCaseResults: ", lastTestCaseResults);
       setLoading(false);
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -95,8 +147,44 @@ const Home = () => {
       <br />
       <div className="code-runner-container">
         <div className="code-editor">
-          {/* optionally show last test case failure- input: output: expected: */}
-          <CodeEditor onSubmit={handleSubmit} loading={loading}></CodeEditor>
+          <div className="test-result-output mb-3">
+            {allTestsPassed ? (
+              <div className="all-tests-passed">
+                <p>🎉 All tests pass!</p>
+              </div>
+            ) : (
+              Object.keys(lastTestCaseResults).length > 0 && (
+                <div>
+                  <p className="test-failure-title m-0">Last failing test</p>
+                  <div>
+                    <span className="label">Input:</span>
+                    <code className="value">
+                      {JSON.stringify(lastTestCaseResults.input, null, 2)}
+                    </code>
+                  </div>
+                  <div>
+                    <span className="label">Expected:</span>
+                    <code className="value">
+                      {JSON.stringify(lastTestCaseResults.expected, null, 2)}
+                    </code>
+                  </div>
+                  <div>
+                    <span className="label">Output:</span>
+                    <code className="value error">
+                      {typeof lastTestCaseResults.output === "string"
+                        ? lastTestCaseResults.output
+                        : lastTestCaseResults.output}
+                    </code>
+                  </div>
+                </div>
+              )
+            )}
+          </div>
+          <CodeEditor
+            onSubmit={handleSubmit}
+            loading={loading}
+            disableSubmit={allTestsPassed}
+          ></CodeEditor>
           <br />
         </div>
         <TestResultsContainer results={allResults} loading={loading} />

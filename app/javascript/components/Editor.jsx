@@ -4,7 +4,7 @@ import { ruby } from "@codemirror/legacy-modes/mode/ruby";
 import CodeMirror from "@uiw/react-codemirror";
 import { StreamLanguage } from "@codemirror/language";
 
-const CodeEditor = ({ onSubmit, loading }) => {
+const CodeEditor = ({ onSubmit, loading, disableSubmit }) => {
   const [answer, setAnswer] = useState("");
   const [attemptCountKey, setAttemptCountKey] = useState("");
   const attempts = localStorage.getItem(attemptCountKey) || 0;
@@ -14,9 +14,6 @@ const CodeEditor = ({ onSubmit, loading }) => {
     const formattedDate = today.toLocaleDateString("en-US");
     const formattedAttemptCountKey = `roodle_${formattedDate}_attempts`;
     setAttemptCountKey(formattedAttemptCountKey);
-    console.log("in useffect");
-    console.log(`formattedAttemptCountKey: ${formattedAttemptCountKey}`);
-    console.log(`attemptCountKey: ${attemptCountKey}`);
   }, []);
 
   const handleSubmit = () => {
@@ -47,7 +44,7 @@ end`}
       <button
         onClick={handleSubmit}
         type="button"
-        disabled={loading || isMaxAttempts}
+        disabled={loading || isMaxAttempts || disableSubmit}
       >
         Submit Test
       </button>
