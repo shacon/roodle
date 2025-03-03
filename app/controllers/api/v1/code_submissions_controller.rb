@@ -3,20 +3,14 @@ class Api::V1::CodeSubmissionsController < ApplicationController
   end
 
   def create
-    prompt = Prompt.for_today
-    submission = CodeSubmission.new(
-      content: submission_params[:submission],
-      user: User.first, # TODO
-      prompt: prompt
-    )
-
-    if submission.save
-      test_runner = CodeTestRunner.new(submission.content, submission.prompt_id)
-
+    begin
+      prompt = Prompt.for_today
+      submission_content = submission_params[:submission]
+      test_runner = CodeTestRunner.new(submission_content, prompt.id)
       results = test_runner.generate_result_hash
       render json: { results: results }
-    else
-      render json: { errors: submission.errors.full_messages }, status: :unprocessable_entity
+    rescue => e
+      render json: { errors:e.message }, status: :unprocessable_entity
     end
   end
 
