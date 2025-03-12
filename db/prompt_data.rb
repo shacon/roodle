@@ -1,6 +1,4 @@
 
-## Find Duplicates
-
 prompt = Prompt.create(
   title: "Find Duplicates",
   content: "Write a function solve that takes in an array of integers and returns an array containing all the elements that appear more than once in the input array, in the order they first appear.",
@@ -190,8 +188,9 @@ test_cases = [
   { input_type: 'array', input_value: [1, 2, 3, 4], expected_output_type: 'array', expected_output_value: [1, 2, 3, 4] },
   { input_type: 'array', input_value: [[[[1]]], [2], [[3]]], expected_output_type: 'array', expected_output_value: [1, 2, 3] },
   { input_type: 'array', input_value: [], expected_output_type: 'array', expected_output_value: [] },
-  { input_type: 'array', input_value: [[[], []], [], [[[][]]]], expected_output_type: 'array', expected_output_value: [] }
+  { input_type: 'array', input_value: [[[], []], [], [[[],[]]]], expected_output_type: 'array', expected_output_value: [] }
 ]
+
 
 test_cases.each do |tc|
   ts.test_cases.create!(tc)
@@ -738,7 +737,7 @@ ts = prompt.test_suite
 test_cases = [
   { input_type: 'string', input_value: '{"name":"John","age":30,"isStudent":false,"courses":["Math","English"]}', expected_output_type: 'hash', expected_output_value: {'name'=>'John', 'age'=>30, 'isStudent'=>false, 'courses'=>['Math', 'English']} },
   { input_type: 'string', input_value: '[1,2,3,4,5]', expected_output_type: 'array', expected_output_value: [1, 2, 3, 4, 5] },
-  { input_type: 'string', input_value: 'null', expected_output_type: 'nil', expected_output_value: nil },
+  { input_type: 'string', input_value: 'true', expected_output_type: 'boolean', expected_output_value: true },
   { input_type: 'string', input_value: '{"a":{"b":{"c":1}},"d":[1,2,3]}', expected_output_type: 'hash', expected_output_value: {'a'=>{'b'=>{'c'=>1}}, 'd'=>[1, 2, 3]} },
   { input_type: 'string', input_value: '{"bool":true,"array":[false,null,123,"text"]}', expected_output_type: 'hash', expected_output_value: {'bool'=>true, 'array'=>[false, nil, 123, 'text']} }
 ]
@@ -746,3 +745,4 @@ test_cases = [
 test_cases.each do |tc|
   ts.test_cases.create!(tc)
 end
+
