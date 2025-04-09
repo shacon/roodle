@@ -1,15 +1,39 @@
 # README
 
-Data Models
+A rails and react app that provides a daily coding prompt in Ruby.
+Deployed using Docker on a raspberry pi.
+
+[Try it out](https://roodlegame.com/)
+ 
+## Overview
+
+Roodle provides a daily coding prompt to help users sharpen their skills in Ruby. The UI is loosely modeled after Wordle, with five test cases showing red, green or yellow to indicate a failing, passing or exception-raising test case, respectively.
+
+
+## Data Models
 
 ```mermaid
 erDiagram
-User ||--o{ CodeSubmission : "has many"
-Prompt ||--o{ CodeSubmission : "has many"
+
 Prompt ||--|| TestSuite : "has one"
 TestSuite ||--o{ TestCase : "contains many"
-CodeSubmission ||--|| TestResult : "has one"
+
 ```
+
+## Features
+
+- Daily coding prompt
+- In-browser code editor (via [CodeMirror](https://codemirror.net/))
+- Responsive design - works on mobile as well
+- Progess tracking over time - coming soon!
+
+## Tech Stack
+
+- Frontend: React.js, JavaScript, HTML, CSS
+- Backend: Ruby on Rails API
+- Database: PostgreSQL
+- Containerization: Docker
+- Deployment: Raspberry Pi
 
 ## Installation
 
