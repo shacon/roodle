@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Typography from "@mui/material/Typography";
 
 import TestResultsContainer from "./TestResultsContainer";
 import CodeEditor from "./Editor";
@@ -134,11 +135,11 @@ const Home = () => {
   return (
     <div className="prompt-and-results-container">
       <div className="prompt-section main-text">
-        <h3 className="main-text">Today's Prompt: </h3>
+        <Typography variant="h4">Today's Prompt:</Typography>
         {prompt ? (
           <div>
-            <h4 className="main-text">{prompt.content}</h4>
-            <h5 className="example-text">{prompt.example}</h5>
+            <Typography variant="body1">{prompt.content}</Typography>
+            <Typography variant="body1">{prompt.example}</Typography>
           </div>
         ) : (
           <p>Loading...</p>
@@ -155,7 +156,7 @@ const Home = () => {
             ) : (
               Object.keys(lastTestCaseResults).length > 0 && (
                 <div>
-                  <p className="test-failure-title m-0">Last failing test</p>
+                  <Typography variant="h6">Last failing test</Typography>
                   <div>
                     <span className="label">Input:</span>
                     <code className="value">

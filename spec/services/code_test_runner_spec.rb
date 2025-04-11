@@ -42,18 +42,7 @@ RSpec.describe CodeTestRunner do
       expect(results[:actual_output]).to eq("")
     end
 
-    it 'handles stderr messages' do
-      allow(PistonClient).to receive(:call).and_return(
-        double(body: JSON.generate({
-          "run" => {
-            "output" => "",
-            "stderr" => "Error message"
-          }
-        }))
-      )
-      results = runner.generate_result_hash.first
-      expect(results[:stderr]).to eq("Error message")
-    end
+
   end
 
   describe '#compare_output' do

@@ -2,18 +2,21 @@ class PistonClient
   PISTON_API_URL = "https://emkc.org/api/v2/piston/execute"
 
 
-  def self.execution_line(input_type, expected_output_type)
-    execution_line = %Q[\nrequire 'json'\nputs solve(JSON.parse(ARGV[0]))]
+  def self.execution_line(expected_output_type)
+    execution_line = %Q[\n solution = solve(ARGV[0])]
     # If the expected output is an array, we need to disambiguate from string and vice versa
     if expected_output_type == "array" || expected_output_type == "string"
       execution_line += ".inspect"
     end
+    # Add type in order to convert back in the code test runner
+    execution_line += %Q[\n puts solution ]
+    execution_line += %Q[\n puts solution.class ]
     execution_line
   end
 
-  def self.call(input:, input_type:, expected_output_type:, content:)
+  def self.call(input:, expected_output_type:, content:)
     normalized_code = content.gsub("\r\n", "\n")
-    execution_line = execution_line(input_type, expected_output_type)
+    execution_line = execution_line(expected_output_type)
     final_code = normalized_code + execution_line
     payload = {
       language: "ruby",
@@ -40,6 +43,5 @@ class PistonClient
     )
     response
   end
-
 
 end
