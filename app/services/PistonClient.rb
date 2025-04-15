@@ -4,8 +4,8 @@ class PistonClient
 
   def self.execution_line(expected_output_type)
     execution_line = %Q[\n solution = solve(ARGV[0])]
-    execution_line += %Q[\n puts solution ]
-    execution_line += %Q[\n puts solution.class ]
+    execution_line += %Q(\n puts solution )
+    execution_line += %Q(\n puts solution.class )
     execution_line
   end
 
@@ -39,5 +39,4 @@ class PistonClient
     Rails.logger.info("Response returned from piston api: #{response}")
     response
   end
-
 end

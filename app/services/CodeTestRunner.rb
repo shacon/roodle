@@ -48,20 +48,20 @@ class CodeTestRunner
     Rails.logger.info("Type is: #{type}")
 
     case type
-    when 'String'
+    when "String"
       result
-    when 'Array'
+    when "Array"
         stringified_collection = "[" + result.strip.gsub("\n", ",") + "]"
         JSON.parse(stringified_collection)
-    when 'Hash'
+    when "Hash"
       parse_hash(result)
-    when 'Integer'
+    when "Integer"
       result.to_i
-    when 'Float'
+    when "Float"
       result.to_f
-    when 'Symbol'
+    when "Symbol"
       result.map(&:to_sym)
-    when 'TrueClass', 'FalseClass'
+    when "TrueClass", "FalseClass"
       JSON.parse(result)
     else
       result
@@ -75,7 +75,7 @@ class CodeTestRunner
     # Try to parse as JSON first, otherwise use our custom parser
     begin
       # Clean up the string if needed
-      if result.include?('=>')
+      if result.include?("=>")
         custom_parse_hash(result)
       else
         JSON.parse(result)
@@ -93,7 +93,7 @@ class CodeTestRunner
     # Clean the string
     clean_str = hash_str.strip
     # Remove outer braces if present
-    clean_str = clean_str[1..-2] if clean_str.start_with?('{') && clean_str.end_with?('}')
+    clean_str = clean_str[1..-2] if clean_str.start_with?("{") && clean_str.end_with?("}")
 
     result = {}
     # Split the string using regex that respects nested structures
@@ -102,7 +102,7 @@ class CodeTestRunner
     items.each do |item|
       next if item.empty?
 
-      key_value = item.split('=>', 2)
+      key_value = item.split("=>", 2)
       next if key_value.length < 2
 
       key = key_value[0].strip
@@ -112,11 +112,11 @@ class CodeTestRunner
       key = key[1..-2] if key.start_with?('"') && key.end_with?('"')
 
       # Parse value based on type
-      if value == 'nil'
+      if value == "nil"
         result[key] = nil
-      elsif value == 'true'
+      elsif value == "true"
         result[key] = true
-      elsif value == 'false'
+      elsif value == "false"
         result[key] = false
       elsif value =~ /^\d+$/
         result[key] = value.to_i
@@ -124,10 +124,10 @@ class CodeTestRunner
         result[key] = value.to_f
       elsif value.start_with?('"') && value.end_with?('"')
         result[key] = value[1..-2]
-      elsif value.start_with?('[') && value.end_with?(']')
+      elsif value.start_with?("[") && value.end_with?("]")
         # Parse array
         result[key] = split_array_items(value[1..-2])
-      elsif value.start_with?('{') && value.end_with?('}')
+      elsif value.start_with?("{") && value.end_with?("}")
         # Recursive parse for nested hash
         result[key] = custom_parse_hash(value)
       else
@@ -149,20 +149,20 @@ class CodeTestRunner
       if escape_next
         current << c
         escape_next = false
-      elsif c == '\\' && !escape_next
+      elsif c == "\\" && !escape_next
         current << c
         escape_next = true
       elsif c == '"' && !escape_next
         current << c
         in_quotes = !in_quotes
       elsif !in_quotes
-        if c == '{' || c == '['
+        if c == "{" || c == "["
           level += 1
           current << c
-        elsif c == '}' || c == ']'
+        elsif c == "}" || c == "]"
           level -= 1
           current << c
-        elsif c == ',' && level == 0
+        elsif c == "," && level == 0
           items << current.strip
           current = ""
         else
@@ -179,11 +179,11 @@ class CodeTestRunner
   def split_array_items(str)
     items = split_hash_items(str)
     items.map do |item|
-      if item == 'nil'
+      if item == "nil"
         nil
-      elsif item == 'true'
+      elsif item == "true"
         true
-      elsif item == 'false'
+      elsif item == "false"
         false
       elsif item =~ /^\d+$/
         item.to_i
@@ -191,9 +191,9 @@ class CodeTestRunner
         item.to_f
       elsif item.start_with?('"') && item.end_with?('"')
         item[1..-2]
-      elsif item.start_with?('[') && item.end_with?(']')
+      elsif item.start_with?("[") && item.end_with?("]")
         split_array_items(item[1..-2])
-      elsif item.start_with?('{') && item.end_with?('}')
+      elsif item.start_with?("{") && item.end_with?("}")
         custom_parse_hash(item)
       else
         item
@@ -208,5 +208,4 @@ class CodeTestRunner
     end
     expected_output_value == actual_output_value
   end
-
 end

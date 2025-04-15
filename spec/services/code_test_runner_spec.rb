@@ -46,14 +46,14 @@ RSpec.describe CodeTestRunner do
       array_response = "1\n2\n3\nArray\n"
       result = runner.convert_response_to_type(array_response)
       expect(result).to be_an(Array)
-      expect(result).to eq([1, 2, 3])
+      expect(result).to eq([ 1, 2, 3 ])
     end
 
     it 'correctly parses hash from response string format' do
       hash_response = "{\"a\"=>{\"b\"=>{\"c\"=>1}}, \"d\"=>[1, 2, 3]}\nHash\n"
       result = runner.convert_response_to_type(hash_response)
       expect(result).to be_a(Hash)
-      expect(result).to eq({"a"=>{"b"=>{"c"=>1}}, "d"=>[1, 2, 3]})
+      expect(result).to eq({ "a"=>{ "b"=>{ "c"=>1 } }, "d"=>[ 1, 2, 3 ] })
     end
 
     it 'correctly parses integer from response string format' do
@@ -70,5 +70,4 @@ RSpec.describe CodeTestRunner do
       expect(result).to eq(false)
     end
   end
-
 end

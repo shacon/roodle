@@ -10,7 +10,7 @@ class Api::V1::CodeSubmissionsController < ApplicationController
       results = test_runner.generate_result_hash
       render json: { results: results }
     rescue => e
-      render json: { errors:e.message }, status: :unprocessable_entity
+      render json: { errors: e.message }, status: :unprocessable_entity
     end
   end
 

@@ -11,11 +11,11 @@ prompt.test_suite = TestSuite.create()
 ts = prompt.test_suite
 
 test_cases = [
-  { input_type: 'array', input_value: [1, 2, 3, 4, nil, nil, nil, nil], expected_output_type: 'array', expected_output_value: [1, 2, 2, 3, 4, 4, nil, nil] },
-  { input_type: 'array', input_value: [2, 4, 6, nil, nil, nil], expected_output_type: 'array', expected_output_value: [2, 2, 4, 4, 6, 6] },
-  { input_type: 'array', input_value: [1], expected_output_type: 'array', expected_output_value: [1] },
-  { input_type: 'array', input_value: [8, nil, nil], expected_output_type: 'array', expected_output_value: [8, 8, nil] },
-  { input_type: 'array', input_value: [7, 8, 9, 10, nil, nil, nil], expected_output_type: 'array', expected_output_value: [7, 8, 8, 9, 10, 10, nil] }
+  { input_type: 'array', input_value: [ 1, 2, 3, 4, nil, nil, nil, nil ], expected_output_type: 'array', expected_output_value: [ 1, 2, 2, 3, 4, 4, nil, nil ] },
+  { input_type: 'array', input_value: [ 2, 4, 6, nil, nil, nil ], expected_output_type: 'array', expected_output_value: [ 2, 2, 4, 4, 6, 6 ] },
+  { input_type: 'array', input_value: [ 1 ], expected_output_type: 'array', expected_output_value: [ 1 ] },
+  { input_type: 'array', input_value: [ 8, nil, nil ], expected_output_type: 'array', expected_output_value: [ 8, 8, nil ] },
+  { input_type: 'array', input_value: [ 7, 8, 9, 10, nil, nil, nil ], expected_output_type: 'array', expected_output_value: [ 7, 8, 8, 9, 10, 10, nil ] }
 ]
 
 test_cases.each do |tc|
@@ -57,11 +57,11 @@ prompt = Prompt.create(
 )
 
 test_cases = [
-  { input_type: 'array', input_value: [1, 2, 3, 4, 5], expected_output_type: 'array', expected_output_value: [5, 4, 3, 2, 1] },
-  { input_type: 'array', input_value: [10, 20, 30], expected_output_type: 'array', expected_output_value: [30, 20, 10] },
-  { input_type: 'array', input_value: [7], expected_output_type: 'array', expected_output_value: [7] },
+  { input_type: 'array', input_value: [ 1, 2, 3, 4, 5 ], expected_output_type: 'array', expected_output_value: [ 5, 4, 3, 2, 1 ] },
+  { input_type: 'array', input_value: [ 10, 20, 30 ], expected_output_type: 'array', expected_output_value: [ 30, 20, 10 ] },
+  { input_type: 'array', input_value: [ 7 ], expected_output_type: 'array', expected_output_value: [ 7 ] },
   { input_type: 'array', input_value: [], expected_output_type: 'array', expected_output_value: [] },
-  { input_type: 'array', input_value: [42, 17, 9, 36, 8, 2, 94], expected_output_type: 'array', expected_output_value: [94, 2, 8, 36, 9, 17, 42] }
+  { input_type: 'array', input_value: [ 42, 17, 9, 36, 8, 2, 94 ], expected_output_type: 'array', expected_output_value: [ 94, 2, 8, 36, 9, 17, 42 ] }
 ]
 
 
@@ -82,11 +82,11 @@ prompt = Prompt.create(
 )
 
 test_cases = [
-  { input_type: 'array', input_value: [[1, 2, 3, 4, 5], 9], expected_output_type: 'array', expected_output_value: [3, 4] },
-  { input_type: 'array', input_value: [[2, 7, 11, 15], 9], expected_output_type: 'array', expected_output_value: [0, 1] },
-  { input_type: 'array', input_value: [[1, 3, 4, 5, 7, 10, 11], 11], expected_output_type: 'array', expected_output_value: [0, 5] },
-  { input_type: 'array', input_value: [[-3, -1, 0, 2, 6], 3], expected_output_type: 'array', expected_output_value: [1, 4] },
-  { input_type: 'array', input_value: [[1, 2, 3, 4], 8], expected_output_type: 'array', expected_output_value: [2, 3] }
+  { input_type: 'array', input_value: [ [ 1, 2, 3, 4, 5 ], 9 ], expected_output_type: 'array', expected_output_value: [ 3, 4 ] },
+  { input_type: 'array', input_value: [ [ 2, 7, 11, 15 ], 9 ], expected_output_type: 'array', expected_output_value: [ 0, 1 ] },
+  { input_type: 'array', input_value: [ [ 1, 3, 4, 5, 7, 10, 11 ], 11 ], expected_output_type: 'array', expected_output_value: [ 0, 5 ] },
+  { input_type: 'array', input_value: [ [ -3, -1, 0, 2, 6 ], 3 ], expected_output_type: 'array', expected_output_value: [ 1, 4 ] },
+  { input_type: 'array', input_value: [ [ 1, 2, 3, 4 ], 8 ], expected_output_type: 'array', expected_output_value: [ 2, 3 ] }
 ]
 
 prompt.test_suite = TestSuite.create()
@@ -96,7 +96,7 @@ test_cases.each do |tc|
   ts.test_cases.create!(tc)
 end
 
-#5
+# 5
 display_date = display_date + 1.day
 prompt = Prompt.create(
   title: "Sorted Squares",
@@ -106,11 +106,11 @@ prompt = Prompt.create(
 )
 
 test_cases = [
-  { input_type: 'array', input_value: [-4, -2, -1, 0, 3, 5], expected_output_type: 'array', expected_output_value: [0, 1, 4, 9, 16, 25] },
-  { input_type: 'array', input_value: [-7, -3, 2, 3, 11], expected_output_type: 'array', expected_output_value: [4, 9, 9, 49, 121] },
-  { input_type: 'array', input_value: [-5, -3, -2, -1], expected_output_type: 'array', expected_output_value: [1, 4, 9, 25] },
-  { input_type: 'array', input_value: [0, 2, 4, 6, 8], expected_output_type: 'array', expected_output_value: [0, 4, 16, 36, 64] },
-  { input_type: 'array', input_value: [-10, -5, 0, 5, 10], expected_output_type: 'array', expected_output_value: [0, 25, 25, 100, 100] }
+  { input_type: 'array', input_value: [ -4, -2, -1, 0, 3, 5 ], expected_output_type: 'array', expected_output_value: [ 0, 1, 4, 9, 16, 25 ] },
+  { input_type: 'array', input_value: [ -7, -3, 2, 3, 11 ], expected_output_type: 'array', expected_output_value: [ 4, 9, 9, 49, 121 ] },
+  { input_type: 'array', input_value: [ -5, -3, -2, -1 ], expected_output_type: 'array', expected_output_value: [ 1, 4, 9, 25 ] },
+  { input_type: 'array', input_value: [ 0, 2, 4, 6, 8 ], expected_output_type: 'array', expected_output_value: [ 0, 4, 16, 36, 64 ] },
+  { input_type: 'array', input_value: [ -10, -5, 0, 5, 10 ], expected_output_type: 'array', expected_output_value: [ 0, 25, 25, 100, 100 ] }
 ]
 
 prompt.test_suite = TestSuite.create()
@@ -130,11 +130,11 @@ prompt = Prompt.create(
 )
 
 test_cases = [
-  { input_type: 'array', input_value: [4, 2, 0, 1, 0, 3, 0], expected_output_type: 'array', expected_output_value: [0, 0, 0, 4, 2, 1, 3] },
-  { input_type: 'array', input_value: [1, 2, 3, 4, 5], expected_output_type: 'array', expected_output_value: [1, 2, 3, 4, 5] },
-  { input_type: 'array', input_value: [0, 0, 0, 0], expected_output_type: 'array', expected_output_value: [0, 0, 0, 0] },
-  { input_type: 'array', input_value: [0, 1, 0, 2, 0, 3], expected_output_type: 'array', expected_output_value: [0, 0, 0, 1, 2, 3] },
-  { input_type: 'array', input_value: [9, 8, 7, 0, 6, 5, 0], expected_output_type: 'array', expected_output_value: [0, 0, 9, 8, 7, 6, 5] }
+  { input_type: 'array', input_value: [ 4, 2, 0, 1, 0, 3, 0 ], expected_output_type: 'array', expected_output_value: [ 0, 0, 0, 4, 2, 1, 3 ] },
+  { input_type: 'array', input_value: [ 1, 2, 3, 4, 5 ], expected_output_type: 'array', expected_output_value: [ 1, 2, 3, 4, 5 ] },
+  { input_type: 'array', input_value: [ 0, 0, 0, 0 ], expected_output_type: 'array', expected_output_value: [ 0, 0, 0, 0 ] },
+  { input_type: 'array', input_value: [ 0, 1, 0, 2, 0, 3 ], expected_output_type: 'array', expected_output_value: [ 0, 0, 0, 1, 2, 3 ] },
+  { input_type: 'array', input_value: [ 9, 8, 7, 0, 6, 5, 0 ], expected_output_type: 'array', expected_output_value: [ 0, 0, 9, 8, 7, 6, 5 ] }
 ]
 
 prompt.test_suite = TestSuite.create()
@@ -144,7 +144,7 @@ test_cases.each do |tc|
   ts.test_cases.create!(tc)
 end
 
-#7
+# 7
 display_date = display_date + 1.day
 prompt = Prompt.create(
   title: "Arrange Around Pivot",
@@ -154,11 +154,11 @@ prompt = Prompt.create(
 )
 
 test_cases = [
-  { input_type: 'array', input_value: [[5, 2, 4, 4, 6, 4, 4, 3], 4], expected_output_type: 'array', expected_output_value: [2, 3, 4, 4, 4, 4, 5, 6] },
-  { input_type: 'array', input_value: [[9, 12, 5, 10, 14, 3, 10], 10], expected_output_type: 'array', expected_output_value: [9, 5, 3, 10, 10, 12, 14] },
-  { input_type: 'array', input_value: [[1, 2, 3, 4, 5], 3], expected_output_type: 'array', expected_output_value: [1, 2, 3, 4, 5] },
-  { input_type: 'array', input_value: [[7, 7, 7, 7], 7], expected_output_type: 'array', expected_output_value: [7, 7, 7, 7] },
-  { input_type: 'array', input_value: [[10, 8, 6, 4, 2], 5], expected_output_type: 'array', expected_output_value: [4, 2, 6, 8, 10] }
+  { input_type: 'array', input_value: [ [ 5, 2, 4, 4, 6, 4, 4, 3 ], 4 ], expected_output_type: 'array', expected_output_value: [ 2, 3, 4, 4, 4, 4, 5, 6 ] },
+  { input_type: 'array', input_value: [ [ 9, 12, 5, 10, 14, 3, 10 ], 10 ], expected_output_type: 'array', expected_output_value: [ 9, 5, 3, 10, 10, 12, 14 ] },
+  { input_type: 'array', input_value: [ [ 1, 2, 3, 4, 5 ], 3 ], expected_output_type: 'array', expected_output_value: [ 1, 2, 3, 4, 5 ] },
+  { input_type: 'array', input_value: [ [ 7, 7, 7, 7 ], 7 ], expected_output_type: 'array', expected_output_value: [ 7, 7, 7, 7 ] },
+  { input_type: 'array', input_value: [ [ 10, 8, 6, 4, 2 ], 5 ], expected_output_type: 'array', expected_output_value: [ 4, 2, 6, 8, 10 ] }
 ]
 
 prompt.test_suite = TestSuite.create()
@@ -178,11 +178,11 @@ prompt = Prompt.create(
 )
 
 test_cases = [
-  { input_type: 'array', input_value: [1, 0, 1, 2, 1, 0, 1, 2], expected_output_type: 'array', expected_output_value: [0, 0, 1, 1, 1, 1, 2, 2] },
-  { input_type: 'array', input_value: [2, 0, 1, 0, 1, 2], expected_output_type: 'array', expected_output_value: [0, 0, 1, 1, 2, 2] },
-  { input_type: 'array', input_value: [0, 0, 0, 0], expected_output_type: 'array', expected_output_value: [0, 0, 0, 0] },
-  { input_type: 'array', input_value: [2, 1, 0], expected_output_type: 'array', expected_output_value: [0, 1, 2] },
-  { input_type: 'array', input_value: [1, 2, 0, 2, 1, 0], expected_output_type: 'array', expected_output_value: [0, 0, 1, 1, 2, 2] }
+  { input_type: 'array', input_value: [ 1, 0, 1, 2, 1, 0, 1, 2 ], expected_output_type: 'array', expected_output_value: [ 0, 0, 1, 1, 1, 1, 2, 2 ] },
+  { input_type: 'array', input_value: [ 2, 0, 1, 0, 1, 2 ], expected_output_type: 'array', expected_output_value: [ 0, 0, 1, 1, 2, 2 ] },
+  { input_type: 'array', input_value: [ 0, 0, 0, 0 ], expected_output_type: 'array', expected_output_value: [ 0, 0, 0, 0 ] },
+  { input_type: 'array', input_value: [ 2, 1, 0 ], expected_output_type: 'array', expected_output_value: [ 0, 1, 2 ] },
+  { input_type: 'array', input_value: [ 1, 2, 0, 2, 1, 0 ], expected_output_type: 'array', expected_output_value: [ 0, 0, 1, 1, 2, 2 ] }
 ]
 
 prompt.test_suite = TestSuite.create()
@@ -203,11 +203,11 @@ prompt = Prompt.create(
 )
 
 test_cases = [
-  { input_type: 'array', input_value: [1, 2, -1, 2, -3, 2, -5], expected_output_type: 'array', expected_output_value: [0, 3] },
-  { input_type: 'array', input_value: [-2, 1, -3, 4, -1, 2, 1, -5, 4], expected_output_type: 'array', expected_output_value: [3, 6] },
-  { input_type: 'array', input_value: [5, 4, -1, 7, 8], expected_output_type: 'array', expected_output_value: [0, 4] },
-  { input_type: 'array', input_value: [-1, -2, -3, -4], expected_output_type: 'array', expected_output_value: [0, 0] },
-  { input_type: 'array', input_value: [2, -5, 1, 3, -2, 4, -1], expected_output_type: 'array', expected_output_value: [2, 5] }
+  { input_type: 'array', input_value: [ 1, 2, -1, 2, -3, 2, -5 ], expected_output_type: 'array', expected_output_value: [ 0, 3 ] },
+  { input_type: 'array', input_value: [ -2, 1, -3, 4, -1, 2, 1, -5, 4 ], expected_output_type: 'array', expected_output_value: [ 3, 6 ] },
+  { input_type: 'array', input_value: [ 5, 4, -1, 7, 8 ], expected_output_type: 'array', expected_output_value: [ 0, 4 ] },
+  { input_type: 'array', input_value: [ -1, -2, -3, -4 ], expected_output_type: 'array', expected_output_value: [ 0, 0 ] },
+  { input_type: 'array', input_value: [ 2, -5, 1, 3, -2, 4, -1 ], expected_output_type: 'array', expected_output_value: [ 2, 5 ] }
 ]
 
 prompt.test_suite = TestSuite.create()
@@ -227,11 +227,11 @@ prompt = Prompt.create(
 )
 
 test_cases = [
-  { input_type: 'array', input_value: [[1, 2, 3, 5, 2], 8], expected_output_type: 'array', expected_output_value: [3, 5] },
-  { input_type: 'array', input_value: [[1, 4, 20, 3, 10, 5], 33], expected_output_type: 'array', expected_output_value: [20, 3, 10] },
-  { input_type: 'array', input_value: [[1, 2, 3, 4, 5], 9], expected_output_type: 'array', expected_output_value: [2, 3, 4] },
-  { input_type: 'array', input_value: [[5, 10, 15, 20, 25], 45], expected_output_type: 'array', expected_output_value: [10, 15, 20] },
-  { input_type: 'array', input_value: [[2, 4, 6, 8], 8], expected_output_type: 'array', expected_output_value: [8] }
+  { input_type: 'array', input_value: [ [ 1, 2, 3, 5, 2 ], 8 ], expected_output_type: 'array', expected_output_value: [ 3, 5 ] },
+  { input_type: 'array', input_value: [ [ 1, 4, 20, 3, 10, 5 ], 33 ], expected_output_type: 'array', expected_output_value: [ 20, 3, 10 ] },
+  { input_type: 'array', input_value: [ [ 1, 2, 3, 4, 5 ], 9 ], expected_output_type: 'array', expected_output_value: [ 2, 3, 4 ] },
+  { input_type: 'array', input_value: [ [ 5, 10, 15, 20, 25 ], 45 ], expected_output_type: 'array', expected_output_value: [ 10, 15, 20 ] },
+  { input_type: 'array', input_value: [ [ 2, 4, 6, 8 ], 8 ], expected_output_type: 'array', expected_output_value: [ 8 ] }
 ]
 
 prompt.test_suite = TestSuite.create()
@@ -276,11 +276,11 @@ prompt = Prompt.create(
 )
 
 test_cases = [
-  { input_type: 'array', input_value: [2, 4, -2, 1, -3, 5, -3], expected_output_type: 'array', expected_output_value: [4, -2, 1, -3] },
-  { input_type: 'array', input_value: [3, 4, -7, 3, 1, 3, 1, -4, -2, -2], expected_output_type: 'array', expected_output_value: [3, 4, -7] },
-  { input_type: 'array', input_value: [1, 2, 3, -6, 4, 5], expected_output_type: 'array', expected_output_value: [1, 2, 3, -6] },
-  { input_type: 'array', input_value: [4, 2, -3, 1, 6], expected_output_type: 'array', expected_output_value: [-3, 1, 2] },
-  { input_type: 'array', input_value: [0, 1, 2, 3], expected_output_type: 'array', expected_output_value: [0] }
+  { input_type: 'array', input_value: [ 2, 4, -2, 1, -3, 5, -3 ], expected_output_type: 'array', expected_output_value: [ 4, -2, 1, -3 ] },
+  { input_type: 'array', input_value: [ 3, 4, -7, 3, 1, 3, 1, -4, -2, -2 ], expected_output_type: 'array', expected_output_value: [ 3, 4, -7 ] },
+  { input_type: 'array', input_value: [ 1, 2, 3, -6, 4, 5 ], expected_output_type: 'array', expected_output_value: [ 1, 2, 3, -6 ] },
+  { input_type: 'array', input_value: [ 4, 2, -3, 1, 6 ], expected_output_type: 'array', expected_output_value: [ -3, 1, 2 ] },
+  { input_type: 'array', input_value: [ 0, 1, 2, 3 ], expected_output_type: 'array', expected_output_value: [ 0 ] }
 ]
 
 prompt.test_suite = TestSuite.create()
@@ -301,11 +301,11 @@ prompt = Prompt.create(
 )
 
 test_cases = [
-  { input_type: 'array', input_value: [[2, 4, -2, 1, -3, 5, -3], 5], expected_output_type: 'array', expected_output_value: [2, 4, -2, 1] },
-  { input_type: 'array', input_value: [[10, 2, -2, -20, 10], -10], expected_output_type: 'array', expected_output_value: [2, -2, -20, 10] },
-  { input_type: 'array', input_value: [[1, 4, 20, 3, 10, 5], 33], expected_output_type: 'array', expected_output_value: [20, 3, 10] },
-  { input_type: 'array', input_value: [[-10, 0, 2, -2, 15, 20], 5], expected_output_type: 'array', expected_output_value: [0, 2, -2, 5] },
-  { input_type: 'array', input_value: [[1, 2, 3, 4, 5], 9], expected_output_type: 'array', expected_output_value: [2, 3, 4] }
+  { input_type: 'array', input_value: [ [ 2, 4, -2, 1, -3, 5, -3 ], 5 ], expected_output_type: 'array', expected_output_value: [ 2, 4, -2, 1 ] },
+  { input_type: 'array', input_value: [ [ 10, 2, -2, -20, 10 ], -10 ], expected_output_type: 'array', expected_output_value: [ 2, -2, -20, 10 ] },
+  { input_type: 'array', input_value: [ [ 1, 4, 20, 3, 10, 5 ], 33 ], expected_output_type: 'array', expected_output_value: [ 20, 3, 10 ] },
+  { input_type: 'array', input_value: [ [ -10, 0, 2, -2, 15, 20 ], 5 ], expected_output_type: 'array', expected_output_value: [ 0, 2, -2, 5 ] },
+  { input_type: 'array', input_value: [ [ 1, 2, 3, 4, 5 ], 9 ], expected_output_type: 'array', expected_output_value: [ 2, 3, 4 ] }
 ]
 
 prompt.test_suite = TestSuite.create()
@@ -326,11 +326,11 @@ prompt = Prompt.create(
 )
 
 test_cases = [
-  { input_type: 'array', input_value: [[1, 2, 3, 4, 5, 6], 4], expected_output_type: 'integer', expected_output_value: 3 },
-  { input_type: 'array', input_value: [[1, 3, 5, 7, 9, 11], 5], expected_output_type: 'integer', expected_output_value: 2 },
-  { input_type: 'array', input_value: [[2, 4, 6, 8, 10, 12, 14], 1], expected_output_type: 'integer', expected_output_value: -1 },
-  { input_type: 'array', input_value: [[1, 1, 2, 3, 5, 8, 13], 8], expected_output_type: 'integer', expected_output_value: 5 },
-  { input_type: 'array', input_value: [[], 5], expected_output_type: 'integer', expected_output_value: -1 }
+  { input_type: 'array', input_value: [ [ 1, 2, 3, 4, 5, 6 ], 4 ], expected_output_type: 'integer', expected_output_value: 3 },
+  { input_type: 'array', input_value: [ [ 1, 3, 5, 7, 9, 11 ], 5 ], expected_output_type: 'integer', expected_output_value: 2 },
+  { input_type: 'array', input_value: [ [ 2, 4, 6, 8, 10, 12, 14 ], 1 ], expected_output_type: 'integer', expected_output_value: -1 },
+  { input_type: 'array', input_value: [ [ 1, 1, 2, 3, 5, 8, 13 ], 8 ], expected_output_type: 'integer', expected_output_value: 5 },
+  { input_type: 'array', input_value: [ [], 5 ], expected_output_type: 'integer', expected_output_value: -1 }
 ]
 
 prompt.test_suite = TestSuite.create()
@@ -351,11 +351,11 @@ prompt = Prompt.create(
 )
 
 test_cases = [
-  { input_type: 'array', input_value: [[2, 3, 5, 8, 9, 11], 7], expected_output_type: 'integer', expected_output_value: 3 },
-  { input_type: 'array', input_value: [[1, 3, 5, 7, 9], 4], expected_output_type: 'integer', expected_output_value: 1 },
-  { input_type: 'array', input_value: [[10, 20, 30, 40, 50], 25], expected_output_type: 'integer', expected_output_value: 1 },
-  { input_type: 'array', input_value: [[1, 2, 3, 4, 5], 5], expected_output_type: 'integer', expected_output_value: 4 },
-  { input_type: 'array', input_value: [[1, 10, 20, 30, 40], 15], expected_output_type: 'integer', expected_output_value: 1 }
+  { input_type: 'array', input_value: [ [ 2, 3, 5, 8, 9, 11 ], 7 ], expected_output_type: 'integer', expected_output_value: 3 },
+  { input_type: 'array', input_value: [ [ 1, 3, 5, 7, 9 ], 4 ], expected_output_type: 'integer', expected_output_value: 1 },
+  { input_type: 'array', input_value: [ [ 10, 20, 30, 40, 50 ], 25 ], expected_output_type: 'integer', expected_output_value: 1 },
+  { input_type: 'array', input_value: [ [ 1, 2, 3, 4, 5 ], 5 ], expected_output_type: 'integer', expected_output_value: 4 },
+  { input_type: 'array', input_value: [ [ 1, 10, 20, 30, 40 ], 15 ], expected_output_type: 'integer', expected_output_value: 1 }
 ]
 
 prompt.test_suite = TestSuite.create()
@@ -376,11 +376,11 @@ prompt = Prompt.create(
 )
 
 test_cases = [
-  { input_type: 'array', input_value: [5, 7, 8, 1, 2, 4], expected_output_type: 'integer', expected_output_value: 3 },
-  { input_type: 'array', input_value: [8, 1, 2, 4, 5, 7], expected_output_type: 'integer', expected_output_value: 1 },
-  { input_type: 'array', input_value: [1, 2, 3, 4, 5], expected_output_type: 'integer', expected_output_value: 0 },
-  { input_type: 'array', input_value: [4, 5, 6, 7, 0, 1, 2], expected_output_type: 'integer', expected_output_value: 4 },
-  { input_type: 'array', input_value: [11, 13, 15, 17, 3, 5, 7, 9], expected_output_type: 'integer', expected_output_value: 4 }
+  { input_type: 'array', input_value: [ 5, 7, 8, 1, 2, 4 ], expected_output_type: 'integer', expected_output_value: 3 },
+  { input_type: 'array', input_value: [ 8, 1, 2, 4, 5, 7 ], expected_output_type: 'integer', expected_output_value: 1 },
+  { input_type: 'array', input_value: [ 1, 2, 3, 4, 5 ], expected_output_type: 'integer', expected_output_value: 0 },
+  { input_type: 'array', input_value: [ 4, 5, 6, 7, 0, 1, 2 ], expected_output_type: 'integer', expected_output_value: 4 },
+  { input_type: 'array', input_value: [ 11, 13, 15, 17, 3, 5, 7, 9 ], expected_output_type: 'integer', expected_output_value: 4 }
 ]
 
 prompt.test_suite = TestSuite.create()
@@ -401,11 +401,11 @@ prompt = Prompt.create(
 )
 
 test_cases = [
-  { input_type: 'array', input_value: [[2, 3, 5, 8, 9, 11, 13, 17, 19, 23], 9], expected_output_type: 'integer', expected_output_value: 4 },
-  { input_type: 'array', input_value: [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 7], expected_output_type: 'integer', expected_output_value: 6 },
-  { input_type: 'array', input_value: [[10, 20, 30, 40, 50, 60, 70, 80, 90], 25], expected_output_type: 'integer', expected_output_value: -1 },
-  { input_type: 'array', input_value: [[5, 10, 15, 20, 25, 30, 35, 40], 5], expected_output_type: 'integer', expected_output_value: 0 },
-  { input_type: 'array', input_value: [[1, 3, 5, 7, 9, 11, 13, 15], 15], expected_output_type: 'integer', expected_output_value: 7 }
+  { input_type: 'array', input_value: [ [ 2, 3, 5, 8, 9, 11, 13, 17, 19, 23 ], 9 ], expected_output_type: 'integer', expected_output_value: 4 },
+  { input_type: 'array', input_value: [ [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ], 7 ], expected_output_type: 'integer', expected_output_value: 6 },
+  { input_type: 'array', input_value: [ [ 10, 20, 30, 40, 50, 60, 70, 80, 90 ], 25 ], expected_output_type: 'integer', expected_output_value: -1 },
+  { input_type: 'array', input_value: [ [ 5, 10, 15, 20, 25, 30, 35, 40 ], 5 ], expected_output_type: 'integer', expected_output_value: 0 },
+  { input_type: 'array', input_value: [ [ 1, 3, 5, 7, 9, 11, 13, 15 ], 15 ], expected_output_type: 'integer', expected_output_value: 7 }
 ]
 
 prompt.test_suite = TestSuite.create()
@@ -450,11 +450,11 @@ prompt = Prompt.create(
 )
 
 test_cases = [
-  { input_type: 'array', input_value: [2, 10], expected_output_type: 'float', expected_output_value: 1024.0 },
-  { input_type: 'array', input_value: [2, -2], expected_output_type: 'float', expected_output_value: 0.25 },
-  { input_type: 'array', input_value: [3, 3], expected_output_type: 'float', expected_output_value: 27.0 },
-  { input_type: 'array', input_value: [-2, 3], expected_output_type: 'float', expected_output_value: -8.0 },
-  { input_type: 'array', input_value: [5, 0], expected_output_type: 'float', expected_output_value: 1.0 }
+  { input_type: 'array', input_value: [ 2, 10 ], expected_output_type: 'float', expected_output_value: 1024.0 },
+  { input_type: 'array', input_value: [ 2, -2 ], expected_output_type: 'float', expected_output_value: 0.25 },
+  { input_type: 'array', input_value: [ 3, 3 ], expected_output_type: 'float', expected_output_value: 27.0 },
+  { input_type: 'array', input_value: [ -2, 3 ], expected_output_type: 'float', expected_output_value: -8.0 },
+  { input_type: 'array', input_value: [ 5, 0 ], expected_output_type: 'float', expected_output_value: 1.0 }
 ]
 
 prompt.test_suite = TestSuite.create()
@@ -474,11 +474,11 @@ prompt = Prompt.create(
 )
 
 test_cases = [
-  { input_type: 'string', input_value: '213', expected_output_type: 'array', expected_output_value: ['a1d', 'a1e', 'a1f', 'b1d', 'b1e', 'b1f', 'c1d', 'c1e', 'c1f'] },
-  { input_type: 'string', input_value: '23', expected_output_type: 'array', expected_output_value: ['ad', 'ae', 'af', 'bd', 'be', 'bf', 'cd', 'ce', 'cf'] },
-  { input_type: 'string', input_value: '456', expected_output_type: 'array', expected_output_value: ['gjm', 'gjn', 'gjo', 'gkm', 'gkn', 'gko', 'glm', 'gln', 'glo', 'hjm', 'hjn', 'hjo', 'hkm', 'hkn', 'hko', 'hlm', 'hln', 'hlo', 'ijm', 'ijn', 'ijo', 'ikm', 'ikn', 'iko', 'ilm', 'iln', 'ilo'] },
-  { input_type: 'string', input_value: '9', expected_output_type: 'array', expected_output_value: ['w', 'x', 'y', 'z'] },
-  { input_type: 'string', input_value: '10', expected_output_type: 'array', expected_output_value: ['10'] }
+  { input_type: 'string', input_value: '213', expected_output_type: 'array', expected_output_value: [ 'a1d', 'a1e', 'a1f', 'b1d', 'b1e', 'b1f', 'c1d', 'c1e', 'c1f' ] },
+  { input_type: 'string', input_value: '23', expected_output_type: 'array', expected_output_value: [ 'ad', 'ae', 'af', 'bd', 'be', 'bf', 'cd', 'ce', 'cf' ] },
+  { input_type: 'string', input_value: '456', expected_output_type: 'array', expected_output_value: [ 'gjm', 'gjn', 'gjo', 'gkm', 'gkn', 'gko', 'glm', 'gln', 'glo', 'hjm', 'hjn', 'hjo', 'hkm', 'hkn', 'hko', 'hlm', 'hln', 'hlo', 'ijm', 'ijn', 'ijo', 'ikm', 'ikn', 'iko', 'ilm', 'iln', 'ilo' ] },
+  { input_type: 'string', input_value: '9', expected_output_type: 'array', expected_output_value: [ 'w', 'x', 'y', 'z' ] },
+  { input_type: 'string', input_value: '10', expected_output_type: 'array', expected_output_value: [ '10' ] }
 ]
 
 prompt.test_suite = TestSuite.create()
@@ -498,11 +498,11 @@ prompt = Prompt.create(
 )
 
 test_cases = [
-  { input_type: 'array', input_value: [[1, 2, 5], 5], expected_output_type: 'array', expected_output_value: [[1, 1, 1, 1, 1], [1, 1, 1, 2], [1, 2, 2], [5]] },
-  { input_type: 'array', input_value: [[1, 2], 4], expected_output_type: 'array', expected_output_value: [[1, 1, 1, 1], [1, 1, 2], [2, 2]] },
-  { input_type: 'array', input_value: [[2, 3, 5], 7], expected_output_type: 'array', expected_output_value: [[2, 2, 3], [2, 5]] },
-  { input_type: 'array', input_value: [[1, 5, 10], 10], expected_output_type: 'array', expected_output_value: [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 5], [5, 5], [10]] },
-  { input_type: 'array', input_value: [[2, 5], 3], expected_output_type: 'array', expected_output_value: [] }
+  { input_type: 'array', input_value: [ [ 1, 2, 5 ], 5 ], expected_output_type: 'array', expected_output_value: [ [ 1, 1, 1, 1, 1 ], [ 1, 1, 1, 2 ], [ 1, 2, 2 ], [ 5 ] ] },
+  { input_type: 'array', input_value: [ [ 1, 2 ], 4 ], expected_output_type: 'array', expected_output_value: [ [ 1, 1, 1, 1 ], [ 1, 1, 2 ], [ 2, 2 ] ] },
+  { input_type: 'array', input_value: [ [ 2, 3, 5 ], 7 ], expected_output_type: 'array', expected_output_value: [ [ 2, 2, 3 ], [ 2, 5 ] ] },
+  { input_type: 'array', input_value: [ [ 1, 5, 10 ], 10 ], expected_output_type: 'array', expected_output_value: [ [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ], [ 1, 1, 1, 1, 1, 5 ], [ 5, 5 ], [ 10 ] ] },
+  { input_type: 'array', input_value: [ [ 2, 5 ], 3 ], expected_output_type: 'array', expected_output_value: [] }
 ]
 
 prompt.test_suite = TestSuite.create()
@@ -522,11 +522,11 @@ prompt = Prompt.create(
 )
 
 test_cases = [
-  { input_type: 'array', input_value: [[0, 0, 1], [1, 0, 0], [0, 0, 0]], expected_output_type: 'boolean', expected_output_value: true },
-  { input_type: 'array', input_value: [[0, 1, 0], [0, 1, 0], [0, 0, 0]], expected_output_type: 'boolean', expected_output_value: true },
-  { input_type: 'array', input_value: [[0, 0, 0], [1, 1, 1], [0, 0, 0]], expected_output_type: 'boolean', expected_output_value: false },
-  { input_type: 'array', input_value: [[0, 1], [1, 0]], expected_output_type: 'boolean', expected_output_value: false },
-  { input_type: 'array', input_value: [[0, 0, 0], [0, 1, 0], [0, 0, 0]], expected_output_type: 'boolean', expected_output_value: true }
+  { input_type: 'array', input_value: [ [ 0, 0, 1 ], [ 1, 0, 0 ], [ 0, 0, 0 ] ], expected_output_type: 'boolean', expected_output_value: true },
+  { input_type: 'array', input_value: [ [ 0, 1, 0 ], [ 0, 1, 0 ], [ 0, 0, 0 ] ], expected_output_type: 'boolean', expected_output_value: true },
+  { input_type: 'array', input_value: [ [ 0, 0, 0 ], [ 1, 1, 1 ], [ 0, 0, 0 ] ], expected_output_type: 'boolean', expected_output_value: false },
+  { input_type: 'array', input_value: [ [ 0, 1 ], [ 1, 0 ] ], expected_output_type: 'boolean', expected_output_value: false },
+  { input_type: 'array', input_value: [ [ 0, 0, 0 ], [ 0, 1, 0 ], [ 0, 0, 0 ] ], expected_output_type: 'boolean', expected_output_value: true }
 ]
 
 prompt.test_suite = TestSuite.create()
@@ -535,5 +535,3 @@ ts = prompt.test_suite
 test_cases.each do |tc|
   ts.test_cases.create!(tc)
 end
-
-
