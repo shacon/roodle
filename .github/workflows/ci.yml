@@ -8,17 +8,14 @@ on:
 jobs:
   scan_ruby:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: .ruby-version
           bundler-cache: true
-
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
 
@@ -27,15 +24,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: .ruby-version
           bundler-cache: true
-
       - name: Lint code for consistent style
         run: bin/rubocop -f github
+
   test:
     runs-on: ubuntu-latest
     services:
@@ -65,18 +61,5 @@ jobs:
           bundler-cache: true
       - name: Set up test database
         run: bin/rails db:create db:schema:load
-      - name: Run RSpec tests
-        run: bin/rspec
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
-      - name: Set up test database
-        run: bin/rails db:create db:schema:load RAILS_ENV=test
       - name: Run RSpec tests
         run: bin/rspec
