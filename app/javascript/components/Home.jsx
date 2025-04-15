@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 
 import TestResultsContainer from "./TestResultsContainer";
 import CodeEditor from "./Editor";
+import CodeExample from "./CodeExample";
 
 const Home = () => {
   const [prompt, setPrompt] = useState(null);
@@ -102,11 +103,9 @@ const Home = () => {
 
       const data = await response.json();
       setResults(data.results);
-      console.log("data.results", data.results);
       const lastFailed = [...data.results]
         .reverse()
         .find((result) => result.passed === false);
-      console.log("last failed", lastFailed);
       if (lastFailed) {
         setLastTestCaseResults({
           expected: lastFailed.expected_output_value,
@@ -116,16 +115,12 @@ const Home = () => {
       }
       const numTestCases = 5;
 
-      // // Check if the last submission's tests all passed
-      // const latestResults = data.results;
       const latestResults = data.results.slice(-numTestCases);
       const allTestsPassed =
         latestResults.length === numTestCases &&
         latestResults.every((r) => r.passed);
 
-      console.log("All tests passed:", allTestsPassed);
       setAllTestsPassed(allTestsPassed);
-      console.log("lastTestCaseResults: ", lastTestCaseResults);
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -138,8 +133,10 @@ const Home = () => {
         <Typography variant="h4">Today's Prompt:</Typography>
         {prompt ? (
           <div>
-            <Typography variant="body1">{prompt.content}</Typography>
-            <Typography variant="body1">{prompt.example}</Typography>
+            <Typography className="rounded-lg shadow-sm p-3" variant="body1">
+              {prompt.content}
+            </Typography>
+            <CodeExample example={prompt.example}> </CodeExample>
           </div>
         ) : (
           <p>Loading...</p>
@@ -174,7 +171,7 @@ const Home = () => {
                     <code className="value error">
                       {typeof lastTestCaseResults.output === "string"
                         ? lastTestCaseResults.output
-                        : lastTestCaseResults.output}
+                        : JSON.stringify(lastTestCaseResults.output)}
                     </code>
                   </div>
                 </div>

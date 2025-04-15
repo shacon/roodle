@@ -52,6 +52,13 @@ Install backend dependencies
 Spin up the app
 `bin/dev`
 
+## Deployment
+
+Roodle is currently deployed on my personal raspberry pi.
+
+Steps to make changes:
+1. 
+
 
 
 ## TODO

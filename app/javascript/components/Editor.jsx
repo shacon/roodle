@@ -33,8 +33,11 @@ const CodeEditor = ({ onSubmit, loading, disableSubmit }) => {
         value={`def solve(input)
 end`}
         onChange={setAnswer}
-        height="200px"
+        height="auto"
+        minHeight="200px"
+        maxHeight="400px"
         extensions={[StreamLanguage.define(ruby)]}
+        className="auto-expand-codemirror"
         basicSetup={{
           foldGutter: false,
           dropCursor: false,

@@ -22,6 +22,8 @@
   grid-template-columns: repeat(5, minmax(40px, 80px));
   gap: 5px;
   padding: 10px;
+  /* No fixed height, but separate from CodeMirror */
+  align-self: start;
 }
 
 .single-result-box {
@@ -80,7 +82,6 @@
 }
 
 .cm-editor {
-  height: 200px;
   border: solid;
   border-radius: 6px;
 }
