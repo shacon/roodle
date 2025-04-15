@@ -43,10 +43,6 @@ class CodeTestRunner
   end
 
   def convert_response_to_type(response)
-    # "tac\nString\n"
-    # "1\n2\n3\nArray\n"
-    #"45\nInteger\n",
-   # "true\nfalse\nArray\n"
     type = response.rpartition("\n")[0].rpartition("\n")[-1]
     result = response.rpartition("\n")[0].rpartition("\n")[0]
     Rails.logger.info("Type is: #{type}")
@@ -59,7 +55,6 @@ class CodeTestRunner
         JSON.parse(stringified_collection)
     when 'Hash'
       parse_hash(result)
-
     when 'Integer'
       result.to_i
     when 'Float'
@@ -73,8 +68,6 @@ class CodeTestRunner
     end
   end
 
-  def prepare_type_for_comparison(type, content)
-  end
   def parse_hash(result)
     Rails.logger.info("testing result: #{result.inspect}")
     Rails.logger.info("testing resultc lass: #{result.class}")
