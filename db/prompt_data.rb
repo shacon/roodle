@@ -1,748 +1,537 @@
 
+starting_display_date = Prompt.last.display_date + 1.day
 prompt = Prompt.create(
-  title: "Find Duplicates",
-  content: "Write a function solve that takes in an array of integers and returns an array containing all the elements that appear more than once in the input array, in the order they first appear.",
-  example: "Input: [1, 3, 4, 2, 2, 4] Expected Output: [2, 4]",
-  display_date: Date.current
+  title: "Repeat even numbers",
+  content: "Given an array of numbers, replace each even number with two of the same number. Assume that the array has enough space to accommodate the result.",
+  example: "Input: [1,2,5,6,8, nil, nil, nil] Expected Output: [1,2,2,5,6,6,8,8]",
+  display_date: starting_display_date
 )
 
 prompt.test_suite = TestSuite.create()
 ts = prompt.test_suite
 
 test_cases = [
-  { input_type: 'array', input_value: [ 1, 3, 4, 2, 2, 4 ], expected_output_type: 'array', expected_output_value: [ 2, 4 ] },
-  { input_type: 'array', input_value: [ 1, 1, 1, 1 ], expected_output_type: 'array', expected_output_value: [ 1 ] },
-  { input_type: 'array', input_value: [ 1, 2, 3, 4 ], expected_output_type: 'array', expected_output_value: [] },
-  { input_type: 'array', input_value: [], expected_output_type: 'array', expected_output_value: [] },
-  { input_type: 'array', input_value: [ 5, 5, 2, 2, 1, 1 ], expected_output_type: 'array', expected_output_value: [ 5, 2, 1 ] }
+  { input_type: 'array', input_value: [ 1, 2, 3, 4, nil, nil, nil, nil ], expected_output_type: 'array', expected_output_value: [ 1, 2, 2, 3, 4, 4, nil, nil ] },
+  { input_type: 'array', input_value: [ 2, 4, 6, nil, nil, nil ], expected_output_type: 'array', expected_output_value: [ 2, 2, 4, 4, 6, 6 ] },
+  { input_type: 'array', input_value: [ 1 ], expected_output_type: 'array', expected_output_value: [ 1 ] },
+  { input_type: 'array', input_value: [ 8, nil, nil ], expected_output_type: 'array', expected_output_value: [ 8, 8, nil ] },
+  { input_type: 'array', input_value: [ 7, 8, 9, 10, nil, nil, nil ], expected_output_type: 'array', expected_output_value: [ 7, 8, 8, 9, 10, 10, nil ] }
 ]
 
 test_cases.each do |tc|
   ts.test_cases.create!(tc)
 end
 
-## String Compression
 
+display_date = starting_display_date + 1.day
+# 2
 prompt = Prompt.create(
-  title: "String Compression",
-  content: "Write a function solve that compresses a string by replacing consecutive repeated characters with the character followed by the count of repetitions. If the compressed string is not shorter than the original, return the original string.",
-  example: "Input: 'aabcccccaaa' Expected Output: 'a2b1c5a3'",
-  display_date: Date.current + 1.day
+  title: "Reverse a string",
+  content: "Given a sentence, reverse the words of the sentence.",
+  example: "Input: 'i live in a house' Expected Output: 'house a in live i'",
+  display_date: display_date
 )
 
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
-
 test_cases = [
-  { input_type: 'string', input_value: 'aabcccccaaa', expected_output_type: 'string', expected_output_value: 'a2b1c5a3' },
-  { input_type: 'string', input_value: 'abcd', expected_output_type: 'string', expected_output_value: 'abcd' },
-  { input_type: 'string', input_value: 'aaaaaaaaaa', expected_output_type: 'string', expected_output_value: 'a10' },
+  { input_type: 'string', input_value: 'hello world', expected_output_type: 'string', expected_output_value: 'world hello' },
+  { input_type: 'string', input_value: 'the quick brown fox', expected_output_type: 'string', expected_output_value: 'fox brown quick the' },
+  { input_type: 'string', input_value: 'a', expected_output_type: 'string', expected_output_value: 'a' },
   { input_type: 'string', input_value: '', expected_output_type: 'string', expected_output_value: '' },
-  { input_type: 'string', input_value: 'aabbaa', expected_output_type: 'string', expected_output_value: 'a2b2a2' }
+  { input_type: 'string', input_value: 'coding is fun and challenging', expected_output_type: 'string', expected_output_value: 'challenging and fun is coding' }
 ]
+
+prompt.test_suite = TestSuite.create()
+ts = prompt.test_suite
 
 test_cases.each do |tc|
   ts.test_cases.create!(tc)
 end
 
-
-## Balanced Parentheses
-
+# 3
+display_date = display_date + 1.day
 prompt = Prompt.create(
-  title: "Balanced Parentheses",
-  content: "Write a function solve that takes a string containing only the characters '(', ')', '{', '}', '[' and ']', and determines if the input string has balanced parentheses.",
-  example: "Input: '(){}[]' Expected Output: true",
-  display_date: Date.current + 2.days
+  title: "Reverse an array",
+  content: "Given an array, reverse the order of its elements. For a more interesting challenge, try not to use Ruby's built in reverse method",
+  example: "Input: [1, 2, 3, 4, 5, 6] Expected Output: [6, 5, 4, 3, 2, 1]",
+  display_date: display_date
 )
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
 
 test_cases = [
-  { input_type: 'string', input_value: '(){}[]', expected_output_type: 'boolean', expected_output_value: true },
-  { input_type: 'string', input_value: '([{}])', expected_output_type: 'boolean', expected_output_value: true },
-  { input_type: 'string', input_value: '(]', expected_output_type: 'boolean', expected_output_value: false },
-  { input_type: 'string', input_value: '([)]', expected_output_type: 'boolean', expected_output_value: false },
-  { input_type: 'string', input_value: '{[]}()', expected_output_type: 'boolean', expected_output_value: true }
+  { input_type: 'array', input_value: [ 1, 2, 3, 4, 5 ], expected_output_type: 'array', expected_output_value: [ 5, 4, 3, 2, 1 ] },
+  { input_type: 'array', input_value: [ 10, 20, 30 ], expected_output_type: 'array', expected_output_value: [ 30, 20, 10 ] },
+  { input_type: 'array', input_value: [ 7 ], expected_output_type: 'array', expected_output_value: [ 7 ] },
+  { input_type: 'array', input_value: [], expected_output_type: 'array', expected_output_value: [] },
+  { input_type: 'array', input_value: [ 42, 17, 9, 36, 8, 2, 94 ], expected_output_type: 'array', expected_output_value: [ 94, 2, 8, 36, 9, 17, 42 ] }
 ]
+
+
+prompt.test_suite = TestSuite.create()
+ts = prompt.test_suite
 
 test_cases.each do |tc|
   ts.test_cases.create!(tc)
 end
 
-
-## Palindrome Checker
-
+# 4
+display_date = display_date + 1.day
 prompt = Prompt.create(
-  title: "Palindrome Checker",
-  content: "Write a function solve that checks if a given string is a palindrome, considering only alphanumeric characters and ignoring case. Return true if it is a palindrome, false otherwise.",
-  example: "Input: 'A man, a plan, a canal: Panama' Expected Output: true",
-  display_date: Date.current + 3.days
+  title: "Two Sum",
+  content: "Given a sorted array and a target value X, find 2 numbers in the array that sum to X. Return the indices of the two numbers.",
+  example: "Input: [1, 2, 3, 4, 5], X = 9 Expected Output: [3, 4] (because 4 + 5 = 9)",
+  display_date: display_date
 )
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
 
 test_cases = [
-  { input_type: 'string', input_value: 'A man, a plan, a canal: Panama', expected_output_type: 'boolean', expected_output_value: true },
-  { input_type: 'string', input_value: 'race a car', expected_output_type: 'boolean', expected_output_value: false },
-  { input_type: 'string', input_value: '12321', expected_output_type: 'boolean', expected_output_value: true },
-  { input_type: 'string', input_value: 'Able, was I ere I saw Elba', expected_output_type: 'boolean', expected_output_value: true },
-  { input_type: 'string', input_value: '', expected_output_type: 'boolean', expected_output_value: true }
+  { input_type: 'array', input_value: [ [ 1, 2, 3, 4, 5 ], 9 ], expected_output_type: 'array', expected_output_value: [ 3, 4 ] },
+  { input_type: 'array', input_value: [ [ 2, 7, 11, 15 ], 9 ], expected_output_type: 'array', expected_output_value: [ 0, 1 ] },
+  { input_type: 'array', input_value: [ [ 1, 3, 4, 5, 7, 10, 11 ], 11 ], expected_output_type: 'array', expected_output_value: [ 0, 5 ] },
+  { input_type: 'array', input_value: [ [ -3, -1, 0, 2, 6 ], 3 ], expected_output_type: 'array', expected_output_value: [ 1, 4 ] },
+  { input_type: 'array', input_value: [ [ 1, 2, 3, 4 ], 8 ], expected_output_type: 'array', expected_output_value: [ 2, 3 ] }
 ]
+
+prompt.test_suite = TestSuite.create()
+ts = prompt.test_suite
 
 test_cases.each do |tc|
   ts.test_cases.create!(tc)
 end
 
-
-## Merge Sorted Arrays
-
+# 5
+display_date = display_date + 1.day
 prompt = Prompt.create(
-  title: "Merge Sorted Arrays",
-  content: "Write a function solve that takes two sorted arrays of integers and merges them into a single sorted array.",
-  example: "Input: [1, 3, 5], [2, 4, 6] Expected Output: [1, 2, 3, 4, 5, 6]",
-  display_date: Date.current + 4.days
+  title: "Sorted Squares",
+  content: "Given a sorted array in non-decreasing order, return an array of squares of each number, also in non-decreasing order. Try to solve it in O(n) time.",
+  example: "Input: [-4, -2, -1, 0, 3, 5] Expected Output: [0, 1, 4, 9, 16, 25]",
+  display_date: display_date
 )
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
 
 test_cases = [
-  { input_type: 'array', input_value: [[1, 3, 5], [2, 4, 6]], expected_output_type: 'array', expected_output_value: [1, 2, 3, 4, 5, 6] },
-  { input_type: 'array', input_value: [[1, 2, 3], [4, 5, 6]], expected_output_type: 'array', expected_output_value: [1, 2, 3, 4, 5, 6] },
-  { input_type: 'array', input_value: [[], [1, 2, 3]], expected_output_type: 'array', expected_output_value: [1, 2, 3] },
-  { input_type: 'array', input_value: [[1, 3, 5, 7], [2, 4]], expected_output_type: 'array', expected_output_value: [1, 2, 3, 4, 5, 7] },
-  { input_type: 'array', input_value: [[1, 1, 3], [1, 2, 3]], expected_output_type: 'array', expected_output_value: [1, 1, 1, 2, 3, 3] }
+  { input_type: 'array', input_value: [ -4, -2, -1, 0, 3, 5 ], expected_output_type: 'array', expected_output_value: [ 0, 1, 4, 9, 16, 25 ] },
+  { input_type: 'array', input_value: [ -7, -3, 2, 3, 11 ], expected_output_type: 'array', expected_output_value: [ 4, 9, 9, 49, 121 ] },
+  { input_type: 'array', input_value: [ -5, -3, -2, -1 ], expected_output_type: 'array', expected_output_value: [ 1, 4, 9, 25 ] },
+  { input_type: 'array', input_value: [ 0, 2, 4, 6, 8 ], expected_output_type: 'array', expected_output_value: [ 0, 4, 16, 36, 64 ] },
+  { input_type: 'array', input_value: [ -10, -5, 0, 5, 10 ], expected_output_type: 'array', expected_output_value: [ 0, 25, 25, 100, 100 ] }
 ]
+
+prompt.test_suite = TestSuite.create()
+ts = prompt.test_suite
 
 test_cases.each do |tc|
   ts.test_cases.create!(tc)
 end
-\
 
-## Fibonacci Sequence
-
+# 6
+display_date = display_date + 1.day
 prompt = Prompt.create(
-  title: "Fibonacci Sequence",
-  content: "Write a function solve that takes an integer n and returns the nth Fibonacci number. The Fibonacci sequence starts with 0 and 1, and each subsequent number is the sum of the two preceding ones.",
-  example: "Input: 6 Expected Output: 8 (The sequence is 0, 1, 1, 2, 3, 5, 8, ...)",
-  display_date: Date.current + 5.days
+  title: "Move Zeros to Beginning",
+  content: "You are given an array of integers. Rearrange the array so that all zeroes are at the beginning of the array. The order of non-zero elements doesn't matter.",
+  example: "Input: [4, 2, 0, 1, 0, 3, 0] Expected Output: [0, 0, 0, 4, 2, 1, 3] (or any arrangement where zeros are at the beginning)",
+  display_date: display_date
 )
+
+test_cases = [
+  { input_type: 'array', input_value: [ 4, 2, 0, 1, 0, 3, 0 ], expected_output_type: 'array', expected_output_value: [ 0, 0, 0, 4, 2, 1, 3 ] },
+  { input_type: 'array', input_value: [ 1, 2, 3, 4, 5 ], expected_output_type: 'array', expected_output_value: [ 1, 2, 3, 4, 5 ] },
+  { input_type: 'array', input_value: [ 0, 0, 0, 0 ], expected_output_type: 'array', expected_output_value: [ 0, 0, 0, 0 ] },
+  { input_type: 'array', input_value: [ 0, 1, 0, 2, 0, 3 ], expected_output_type: 'array', expected_output_value: [ 0, 0, 0, 1, 2, 3 ] },
+  { input_type: 'array', input_value: [ 9, 8, 7, 0, 6, 5, 0 ], expected_output_type: 'array', expected_output_value: [ 0, 0, 9, 8, 7, 6, 5 ] }
+]
 
 prompt.test_suite = TestSuite.create()
 ts = prompt.test_suite
+
+test_cases.each do |tc|
+  ts.test_cases.create!(tc)
+end
+
+# 7
+display_date = display_date + 1.day
+prompt = Prompt.create(
+  title: "Arrange Around Pivot",
+  content: "Given an array of integers A and a pivot value, rearrange A in the following order: [Elements less than pivot, elements equal to pivot, elements greater than pivot]",
+  example: "Input: [5, 2, 4, 4, 6, 4, 4, 3], pivot = 4 Expected Output: [2, 3, 4, 4, 4, 4, 5, 6]",
+  display_date: display_date
+)
+
+test_cases = [
+  { input_type: 'array', input_value: [ [ 5, 2, 4, 4, 6, 4, 4, 3 ], 4 ], expected_output_type: 'array', expected_output_value: [ 2, 3, 4, 4, 4, 4, 5, 6 ] },
+  { input_type: 'array', input_value: [ [ 9, 12, 5, 10, 14, 3, 10 ], 10 ], expected_output_type: 'array', expected_output_value: [ 9, 5, 3, 10, 10, 12, 14 ] },
+  { input_type: 'array', input_value: [ [ 1, 2, 3, 4, 5 ], 3 ], expected_output_type: 'array', expected_output_value: [ 1, 2, 3, 4, 5 ] },
+  { input_type: 'array', input_value: [ [ 7, 7, 7, 7 ], 7 ], expected_output_type: 'array', expected_output_value: [ 7, 7, 7, 7 ] },
+  { input_type: 'array', input_value: [ [ 10, 8, 6, 4, 2 ], 5 ], expected_output_type: 'array', expected_output_value: [ 4, 2, 6, 8, 10 ] }
+]
+
+prompt.test_suite = TestSuite.create()
+ts = prompt.test_suite
+
+test_cases.each do |tc|
+  ts.test_cases.create!(tc)
+end
+
+# 8
+display_date = display_date + 1.day
+prompt = Prompt.create(
+  title: "Dutch National Flag",
+  content: "Given an array with n marbles colored Red (0), White (1) or Blue (2), sort them so that marbles of the same color are adjacent, with the colors in the order Red, White and Blue.",
+  example: "Input: [1, 0, 1, 2, 1, 0, 1, 2] Expected Output: [0, 0, 1, 1, 1, 1, 2, 2]",
+  display_date: display_date
+)
+
+test_cases = [
+  { input_type: 'array', input_value: [ 1, 0, 1, 2, 1, 0, 1, 2 ], expected_output_type: 'array', expected_output_value: [ 0, 0, 1, 1, 1, 1, 2, 2 ] },
+  { input_type: 'array', input_value: [ 2, 0, 1, 0, 1, 2 ], expected_output_type: 'array', expected_output_value: [ 0, 0, 1, 1, 2, 2 ] },
+  { input_type: 'array', input_value: [ 0, 0, 0, 0 ], expected_output_type: 'array', expected_output_value: [ 0, 0, 0, 0 ] },
+  { input_type: 'array', input_value: [ 2, 1, 0 ], expected_output_type: 'array', expected_output_value: [ 0, 1, 2 ] },
+  { input_type: 'array', input_value: [ 1, 2, 0, 2, 1, 0 ], expected_output_type: 'array', expected_output_value: [ 0, 0, 1, 1, 2, 2 ] }
+]
+
+prompt.test_suite = TestSuite.create()
+ts = prompt.test_suite
+
+test_cases.each do |tc|
+  ts.test_cases.create!(tc)
+end
+
+# 9
+
+display_date = display_date + 1.day
+prompt = Prompt.create(
+  title: "Maximum Subarray",
+  content: "Given an array of integers, find the contiguous subarray (with at least 1 element) with the maximum sum. Return the start and end indices of this subarray. The array can contain both negative and positive integers.",
+  example: "Input: [1, 2, -1, 2, -3, 2, -5] Expected Output: [0, 3] (because the subarray [1, 2, -1, 2] has the largest sum of 4)",
+  display_date: display_date
+)
+
+test_cases = [
+  { input_type: 'array', input_value: [ 1, 2, -1, 2, -3, 2, -5 ], expected_output_type: 'array', expected_output_value: [ 0, 3 ] },
+  { input_type: 'array', input_value: [ -2, 1, -3, 4, -1, 2, 1, -5, 4 ], expected_output_type: 'array', expected_output_value: [ 3, 6 ] },
+  { input_type: 'array', input_value: [ 5, 4, -1, 7, 8 ], expected_output_type: 'array', expected_output_value: [ 0, 4 ] },
+  { input_type: 'array', input_value: [ -1, -2, -3, -4 ], expected_output_type: 'array', expected_output_value: [ 0, 0 ] },
+  { input_type: 'array', input_value: [ 2, -5, 1, 3, -2, 4, -1 ], expected_output_type: 'array', expected_output_value: [ 2, 5 ] }
+]
+
+prompt.test_suite = TestSuite.create()
+ts = prompt.test_suite
+
+test_cases.each do |tc|
+  ts.test_cases.create!(tc)
+end
+
+# 10
+display_date = display_date + 1.day
+prompt = Prompt.create(
+  title: "Subarray Sum",
+  content: "Given an array of positive integers, find the contiguous subarray that sums to a given number X. Return the subarray itself.",
+  example: "Input: [1, 2, 3, 5, 2], X = 8 Expected Output: [3, 5] (because 3 + 5 = 8)",
+  display_date: display_date
+)
+
+test_cases = [
+  { input_type: 'array', input_value: [ [ 1, 2, 3, 5, 2 ], 8 ], expected_output_type: 'array', expected_output_value: [ 3, 5 ] },
+  { input_type: 'array', input_value: [ [ 1, 4, 20, 3, 10, 5 ], 33 ], expected_output_type: 'array', expected_output_value: [ 20, 3, 10 ] },
+  { input_type: 'array', input_value: [ [ 1, 2, 3, 4, 5 ], 9 ], expected_output_type: 'array', expected_output_value: [ 2, 3, 4 ] },
+  { input_type: 'array', input_value: [ [ 5, 10, 15, 20, 25 ], 45 ], expected_output_type: 'array', expected_output_value: [ 10, 15, 20 ] },
+  { input_type: 'array', input_value: [ [ 2, 4, 6, 8 ], 8 ], expected_output_type: 'array', expected_output_value: [ 8 ] }
+]
+
+prompt.test_suite = TestSuite.create()
+ts = prompt.test_suite
+
+test_cases.each do |tc|
+  ts.test_cases.create!(tc)
+end
+
+# 11
+display_date = display_date + 1.day
+prompt = Prompt.create(
+  title: "Longest Unique Substring",
+  content: "Given a string, find the longest substring with unique characters. Return the substring.",
+  example: "Input: 'whatwhywhere' Expected Output: 'atwhy' (the longest substring with no repeating characters)",
+  display_date: display_date
+)
+
+test_cases = [
+  { input_type: 'string', input_value: 'whatwhywhere', expected_output_type: 'string', expected_output_value: 'atwhy' },
+  { input_type: 'string', input_value: 'abcabcbb', expected_output_type: 'string', expected_output_value: 'abc' },
+  { input_type: 'string', input_value: 'bbbbb', expected_output_type: 'string', expected_output_value: 'b' },
+  { input_type: 'string', input_value: 'pwwkew', expected_output_type: 'string', expected_output_value: 'wke' },
+  { input_type: 'string', input_value: 'aabcdefghi', expected_output_type: 'string', expected_output_value: 'abcdefghi' }
+]
+
+prompt.test_suite = TestSuite.create()
+ts = prompt.test_suite
+
+test_cases.each do |tc|
+  ts.test_cases.create!(tc)
+end
+
+# 12
+
+display_date = display_date + 1.day
+prompt = Prompt.create(
+  title: "Zero Sum Subarray",
+  content: "Given an array of integers, find the contiguous subarray that sums to 0. The array can contain both negative and positive integers. Return the subarray itself.",
+  example: "Input: [2, 4, -2, 1, -3, 5, -3] Expected Output: [4, -2, 1, -3] (because 4 + (-2) + 1 + (-3) = 0)",
+  display_date: display_date
+)
+
+test_cases = [
+  { input_type: 'array', input_value: [ 2, 4, -2, 1, -3, 5, -3 ], expected_output_type: 'array', expected_output_value: [ 4, -2, 1, -3 ] },
+  { input_type: 'array', input_value: [ 3, 4, -7, 3, 1, 3, 1, -4, -2, -2 ], expected_output_type: 'array', expected_output_value: [ 3, 4, -7 ] },
+  { input_type: 'array', input_value: [ 1, 2, 3, -6, 4, 5 ], expected_output_type: 'array', expected_output_value: [ 1, 2, 3, -6 ] },
+  { input_type: 'array', input_value: [ 4, 2, -3, 1, 6 ], expected_output_type: 'array', expected_output_value: [ -3, 1, 2 ] },
+  { input_type: 'array', input_value: [ 0, 1, 2, 3 ], expected_output_type: 'array', expected_output_value: [ 0 ] }
+]
+
+prompt.test_suite = TestSuite.create()
+ts = prompt.test_suite
+
+test_cases.each do |tc|
+  ts.test_cases.create!(tc)
+end
+
+# 13
+
+display_date = display_date + 1.day
+prompt = Prompt.create(
+  title: "Target Sum Subarray",
+  content: "Given an array of positive and negative integers, find a subarray whose sum equals X. Return the subarray itself.",
+  example: "Input: [2, 4, -2, 1, -3, 5, -3], X = 5 Expected Output: [2, 4, -2, 1] (because 2 + 4 + (-2) + 1 = 5)",
+  display_date: display_date
+)
+
+test_cases = [
+  { input_type: 'array', input_value: [ [ 2, 4, -2, 1, -3, 5, -3 ], 5 ], expected_output_type: 'array', expected_output_value: [ 2, 4, -2, 1 ] },
+  { input_type: 'array', input_value: [ [ 10, 2, -2, -20, 10 ], -10 ], expected_output_type: 'array', expected_output_value: [ 2, -2, -20, 10 ] },
+  { input_type: 'array', input_value: [ [ 1, 4, 20, 3, 10, 5 ], 33 ], expected_output_type: 'array', expected_output_value: [ 20, 3, 10 ] },
+  { input_type: 'array', input_value: [ [ -10, 0, 2, -2, 15, 20 ], 5 ], expected_output_type: 'array', expected_output_value: [ 0, 2, -2, 5 ] },
+  { input_type: 'array', input_value: [ [ 1, 2, 3, 4, 5 ], 9 ], expected_output_type: 'array', expected_output_value: [ 2, 3, 4 ] }
+]
+
+prompt.test_suite = TestSuite.create()
+ts = prompt.test_suite
+
+test_cases.each do |tc|
+  ts.test_cases.create!(tc)
+end
+
+# 14
+
+display_date = display_date + 1.day
+prompt = Prompt.create(
+  title: "Binary Search",
+  content: "Given a sorted array, search for a target item. Return the index of the target if found, otherwise return -1.",
+  example: "Input: [1, 2, 3, 4, 5, 6], target = 4 Expected Output: 3 (index of target 4)",
+  display_date: display_date
+)
+
+test_cases = [
+  { input_type: 'array', input_value: [ [ 1, 2, 3, 4, 5, 6 ], 4 ], expected_output_type: 'integer', expected_output_value: 3 },
+  { input_type: 'array', input_value: [ [ 1, 3, 5, 7, 9, 11 ], 5 ], expected_output_type: 'integer', expected_output_value: 2 },
+  { input_type: 'array', input_value: [ [ 2, 4, 6, 8, 10, 12, 14 ], 1 ], expected_output_type: 'integer', expected_output_value: -1 },
+  { input_type: 'array', input_value: [ [ 1, 1, 2, 3, 5, 8, 13 ], 8 ], expected_output_type: 'integer', expected_output_value: 5 },
+  { input_type: 'array', input_value: [ [], 5 ], expected_output_type: 'integer', expected_output_value: -1 }
+]
+
+prompt.test_suite = TestSuite.create()
+ts = prompt.test_suite
+
+test_cases.each do |tc|
+  ts.test_cases.create!(tc)
+end
+
+# 15
+
+display_date = display_date + 1.day
+prompt = Prompt.create(
+  title: "Closest Number",
+  content: "Given a sorted array A and a target T, find the target. If the target is not in the array, find the index of the number closest to the target.",
+  example: "Input: [2, 3, 5, 8, 9, 11], T = 7 Expected Output: 3 (index of 8, which is closest to 7)",
+  display_date: display_date
+)
+
+test_cases = [
+  { input_type: 'array', input_value: [ [ 2, 3, 5, 8, 9, 11 ], 7 ], expected_output_type: 'integer', expected_output_value: 3 },
+  { input_type: 'array', input_value: [ [ 1, 3, 5, 7, 9 ], 4 ], expected_output_type: 'integer', expected_output_value: 1 },
+  { input_type: 'array', input_value: [ [ 10, 20, 30, 40, 50 ], 25 ], expected_output_type: 'integer', expected_output_value: 1 },
+  { input_type: 'array', input_value: [ [ 1, 2, 3, 4, 5 ], 5 ], expected_output_type: 'integer', expected_output_value: 4 },
+  { input_type: 'array', input_value: [ [ 1, 10, 20, 30, 40 ], 15 ], expected_output_type: 'integer', expected_output_value: 1 }
+]
+
+prompt.test_suite = TestSuite.create()
+ts = prompt.test_suite
+
+test_cases.each do |tc|
+  ts.test_cases.create!(tc)
+end
+
+# 16
+
+display_date = display_date + 1.day
+prompt = Prompt.create(
+  title: "Find Minimum in Rotated Array",
+  content: "Given a sorted array that has been rotated in a cycle, find the smallest element of the array in O(log(n)) time.",
+  example: "Input: [5, 7, 8, 1, 2, 4] (originally [1, 2, 4, 5, 7, 8] rotated by 3) Expected Output: 3 (index of 1, which is the smallest element)",
+  display_date: display_date
+)
+
+test_cases = [
+  { input_type: 'array', input_value: [ 5, 7, 8, 1, 2, 4 ], expected_output_type: 'integer', expected_output_value: 3 },
+  { input_type: 'array', input_value: [ 8, 1, 2, 4, 5, 7 ], expected_output_type: 'integer', expected_output_value: 1 },
+  { input_type: 'array', input_value: [ 1, 2, 3, 4, 5 ], expected_output_type: 'integer', expected_output_value: 0 },
+  { input_type: 'array', input_value: [ 4, 5, 6, 7, 0, 1, 2 ], expected_output_type: 'integer', expected_output_value: 4 },
+  { input_type: 'array', input_value: [ 11, 13, 15, 17, 3, 5, 7, 9 ], expected_output_type: 'integer', expected_output_value: 4 }
+]
+
+prompt.test_suite = TestSuite.create()
+ts = prompt.test_suite
+
+test_cases.each do |tc|
+  ts.test_cases.create!(tc)
+end
+
+# 17
+
+display_date = display_date + 1.day
+prompt = Prompt.create(
+  title: "Unbounded Binary Search",
+  content: "Given a sorted array whose length is not known, perform binary search for a target T. Try to do the search in O(log(n)) time.",
+  example: "Input: [2, 3, 5, 8, 9, 11, ...], T = 9 Expected Output: 4 (index of target 9)",
+  display_date: display_date
+)
+
+test_cases = [
+  { input_type: 'array', input_value: [ [ 2, 3, 5, 8, 9, 11, 13, 17, 19, 23 ], 9 ], expected_output_type: 'integer', expected_output_value: 4 },
+  { input_type: 'array', input_value: [ [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ], 7 ], expected_output_type: 'integer', expected_output_value: 6 },
+  { input_type: 'array', input_value: [ [ 10, 20, 30, 40, 50, 60, 70, 80, 90 ], 25 ], expected_output_type: 'integer', expected_output_value: -1 },
+  { input_type: 'array', input_value: [ [ 5, 10, 15, 20, 25, 30, 35, 40 ], 5 ], expected_output_type: 'integer', expected_output_value: 0 },
+  { input_type: 'array', input_value: [ [ 1, 3, 5, 7, 9, 11, 13, 15 ], 15 ], expected_output_type: 'integer', expected_output_value: 7 }
+]
+
+prompt.test_suite = TestSuite.create()
+ts = prompt.test_suite
+
+test_cases.each do |tc|
+  ts.test_cases.create!(tc)
+end
+
+# 18
+display_date = display_date + 1.day
+prompt = Prompt.create(
+  title: "Fibonacci Number",
+  content: "Find the Nth element of the Fibonacci series. The Fibonacci series starts with 1, 1 and each subsequent number is the sum of the two preceding ones: 1, 1, 2, 3, 5, 8, ...",
+  example: "Input: 6 Expected Output: 8 (the 6th Fibonacci number)",
+  display_date: display_date
+)
 
 test_cases = [
   { input_type: 'integer', input_value: 6, expected_output_type: 'integer', expected_output_value: 8 },
-  { input_type: 'integer', input_value: 0, expected_output_type: 'integer', expected_output_value: 0 },
   { input_type: 'integer', input_value: 1, expected_output_type: 'integer', expected_output_value: 1 },
   { input_type: 'integer', input_value: 10, expected_output_type: 'integer', expected_output_value: 55 },
-  { input_type: 'integer', input_value: 20, expected_output_type: 'integer', expected_output_value: 6765 }
+  { input_type: 'integer', input_value: 20, expected_output_type: 'integer', expected_output_value: 6765 },
+  { input_type: 'integer', input_value: 15, expected_output_type: 'integer', expected_output_value: 610 }
 ]
-
-test_cases.each do |tc|
-  ts.test_cases.create!(tc)
-end
-
-
-## Anagram Detector
-
-prompt = Prompt.create(
-  title: "Anagram Detector",
-  content: "Write a function solve that takes two strings and determines if they are anagrams of each other. An anagram is a word formed by rearranging the letters of another word. Ignore case and non-alphanumeric characters.",
-  example: "Input: 'Listen', 'Silent' Expected Output: true",
-  display_date: Date.current + 6.days
-)
 
 prompt.test_suite = TestSuite.create()
 ts = prompt.test_suite
 
-test_cases = [
-  { input_type: 'array', input_value: ['Listen', 'Silent'], expected_output_type: 'boolean', expected_output_value: true },
-  { input_type: 'array', input_value: ['hello', 'world'], expected_output_type: 'boolean', expected_output_value: false },
-  { input_type: 'array', input_value: ['Dormitory', 'Dirty Room'], expected_output_type: 'boolean', expected_output_value: true },
-  { input_type: 'array', input_value: ['The Morse Code', 'Here come dots'], expected_output_type: 'boolean', expected_output_value: true },
-  { input_type: 'array', input_value: ['', ''], expected_output_type: 'boolean', expected_output_value: true }
-]
-
 test_cases.each do |tc|
   ts.test_cases.create!(tc)
 end
 
+# 19
 
-## Deep Flatten Array
-
+display_date = display_date + 1.day
 prompt = Prompt.create(
-  title: "Deep Flatten Array",
-  content: "Write a function solve that takes a nested array and returns a single-level flat array with all elements in the original order.",
-  example: "Input: [1, [2, [3, 4], 5], 6] Expected Output: [1, 2, 3, 4, 5, 6]",
-  display_date: Date.current + 7.days
+  title: "Power Function",
+  content: "Implement a function to calculate x^n (x raised to the power of n). Both x and n can be positive or negative. Try to implement this in O(log(n)) time.",
+  example: "Input: x = 2, n = 10 Expected Output: 1024 (2^10 = 1024)",
+  display_date: display_date
 )
+
+test_cases = [
+  { input_type: 'array', input_value: [ 2, 10 ], expected_output_type: 'float', expected_output_value: 1024.0 },
+  { input_type: 'array', input_value: [ 2, -2 ], expected_output_type: 'float', expected_output_value: 0.25 },
+  { input_type: 'array', input_value: [ 3, 3 ], expected_output_type: 'float', expected_output_value: 27.0 },
+  { input_type: 'array', input_value: [ -2, 3 ], expected_output_type: 'float', expected_output_value: -8.0 },
+  { input_type: 'array', input_value: [ 5, 0 ], expected_output_type: 'float', expected_output_value: 1.0 }
+]
 
 prompt.test_suite = TestSuite.create()
 ts = prompt.test_suite
 
-test_cases = [
-  { input_type: 'array', input_value: [1, [2, [3, 4], 5], 6], expected_output_type: 'array', expected_output_value: [1, 2, 3, 4, 5, 6] },
-  { input_type: 'array', input_value: [1, 2, 3, 4], expected_output_type: 'array', expected_output_value: [1, 2, 3, 4] },
-  { input_type: 'array', input_value: [[[[1]]], [2], [[3]]], expected_output_type: 'array', expected_output_value: [1, 2, 3] },
-  { input_type: 'array', input_value: [], expected_output_type: 'array', expected_output_value: [] },
-  { input_type: 'array', input_value: [[[], []], [], [[[],[]]]], expected_output_type: 'array', expected_output_value: [] }
-]
-
-
 test_cases.each do |tc|
   ts.test_cases.create!(tc)
 end
 
-
-##  Word Frequency Counter
-
+# 20
+display_date = display_date + 1.day
 prompt = Prompt.create(
-  title: "Word Frequency Counter",
-  content: "Write a function solve that takes a string and returns a hash mapping each word to its frequency. Words should be case-insensitive and separated by whitespace.",
-  example: "Input: 'The quick brown fox jumps over the lazy dog.' Expected Output: {'the'=>2, 'quick'=>1, 'brown'=>1, 'fox'=>1, 'jumps'=>1, 'over'=>1, 'lazy'=>1, 'dog'=>1}",
-  display_date: Date.current + 8.days
+  title: "Phone Number Mnemonics",
+  content: "Given an N digit phone number, print all the strings that can be made from that phone number. Since 1 and 0 don't correspond to any characters, ignore them. For reference: 2 (abc), 3 (def), 4 (ghi), 5 (jkl), 6 (mno), 7 (pqrs), 8 (tuv), 9 (wxyz)",
+  example: "Input: '213' Expected Output: ['a1d', 'a1e', 'a1f', 'b1d', 'b1e', 'b1f', 'c1d', 'c1e', 'c1f']",
+  display_date: display_date
 )
+
+test_cases = [
+  { input_type: 'string', input_value: '213', expected_output_type: 'array', expected_output_value: [ 'a1d', 'a1e', 'a1f', 'b1d', 'b1e', 'b1f', 'c1d', 'c1e', 'c1f' ] },
+  { input_type: 'string', input_value: '23', expected_output_type: 'array', expected_output_value: [ 'ad', 'ae', 'af', 'bd', 'be', 'bf', 'cd', 'ce', 'cf' ] },
+  { input_type: 'string', input_value: '456', expected_output_type: 'array', expected_output_value: [ 'gjm', 'gjn', 'gjo', 'gkm', 'gkn', 'gko', 'glm', 'gln', 'glo', 'hjm', 'hjn', 'hjo', 'hkm', 'hkn', 'hko', 'hlm', 'hln', 'hlo', 'ijm', 'ijn', 'ijo', 'ikm', 'ikn', 'iko', 'ilm', 'iln', 'ilo' ] },
+  { input_type: 'string', input_value: '9', expected_output_type: 'array', expected_output_value: [ 'w', 'x', 'y', 'z' ] },
+  { input_type: 'string', input_value: '10', expected_output_type: 'array', expected_output_value: [ '10' ] }
+]
 
 prompt.test_suite = TestSuite.create()
 ts = prompt.test_suite
 
-test_cases = [
-  { input_type: 'string', input_value: 'The quick brown fox jumps over the lazy dog.', expected_output_type: 'hash', expected_output_value: {'the'=>2, 'quick'=>1, 'brown'=>1, 'fox'=>1, 'jumps'=>1, 'over'=>1, 'lazy'=>1, 'dog'=>1} },
-  { input_type: 'string', input_value: 'apple apple orange banana apple banana', expected_output_type: 'hash', expected_output_value: {'apple'=>3, 'orange'=>1, 'banana'=>2} },
-  { input_type: 'string', input_value: '', expected_output_type: 'hash', expected_output_value: {} },
-  { input_type: 'string', input_value: 'Ruby Ruby Ruby', expected_output_type: 'hash', expected_output_value: {'ruby'=>3} },
-  { input_type: 'string', input_value: 'The The the THE', expected_output_type: 'hash', expected_output_value: {'the'=>4} }
-]
-
 test_cases.each do |tc|
   ts.test_cases.create!(tc)
 end
 
-
-## Missing Number
-
+# 21
+display_date = display_date + 1.day
 prompt = Prompt.create(
-  title: "Missing Number",
-  content: "Write a function solve that takes an array containing n distinct numbers taken from 0, 1, 2, ..., n, and returns the one number in the range that is missing from the array.",
-  example: "Input: [3, 0, 1] Expected Output: 2",
-  display_date: Date.current + 9.days
+  title: "Coin Change Combinations",
+  content: "Given a set of coin denominations, print out the different ways you can make a target amount. You can use as many coins of each denomination as you like.",
+  example: "Input: coins = [1, 2, 5], target = 5 Expected Output: [[1, 1, 1, 1, 1], [1, 1, 1, 2], [1, 2, 2], [5]]",
+  display_date: display_date
 )
+
+test_cases = [
+  { input_type: 'array', input_value: [ [ 1, 2, 5 ], 5 ], expected_output_type: 'array', expected_output_value: [ [ 1, 1, 1, 1, 1 ], [ 1, 1, 1, 2 ], [ 1, 2, 2 ], [ 5 ] ] },
+  { input_type: 'array', input_value: [ [ 1, 2 ], 4 ], expected_output_type: 'array', expected_output_value: [ [ 1, 1, 1, 1 ], [ 1, 1, 2 ], [ 2, 2 ] ] },
+  { input_type: 'array', input_value: [ [ 2, 3, 5 ], 7 ], expected_output_type: 'array', expected_output_value: [ [ 2, 2, 3 ], [ 2, 5 ] ] },
+  { input_type: 'array', input_value: [ [ 1, 5, 10 ], 10 ], expected_output_type: 'array', expected_output_value: [ [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ], [ 1, 1, 1, 1, 1, 5 ], [ 5, 5 ], [ 10 ] ] },
+  { input_type: 'array', input_value: [ [ 2, 5 ], 3 ], expected_output_type: 'array', expected_output_value: [] }
+]
 
 prompt.test_suite = TestSuite.create()
 ts = prompt.test_suite
 
-test_cases = [
-  { input_type: 'array', input_value: [3, 0, 1], expected_output_type: 'integer', expected_output_value: 2 },
-  { input_type: 'array', input_value: [9, 6, 4, 2, 3, 5, 7, 0, 1], expected_output_type: 'integer', expected_output_value: 8 },
-  { input_type: 'array', input_value: [0], expected_output_type: 'integer', expected_output_value: 1 },
-  { input_type: 'array', input_value: [1], expected_output_type: 'integer', expected_output_value: 0 },
-  { input_type: 'array', input_value: [0, 1, 2, 3, 5], expected_output_type: 'integer', expected_output_value: 4 }
-]
-
 test_cases.each do |tc|
   ts.test_cases.create!(tc)
 end
 
-
-##  Binary Search
-
+# 22
+display_date = display_date + 1.day
 prompt = Prompt.create(
-  title: "Binary Search",
-  content: "Write a function solve that implements binary search on a sorted array. The function should take a sorted array and a target value, and return the index of the target if it's present in the array, or -1 if it's not present.",
-  example: "Input: [1, 2, 3, 4, 5], 3 Expected Output: 2",
-  display_date: Date.current + 10.days
+  title: "Maze Path",
+  content: "You are given a 2D array that represents a maze. It can have 2 values - 0 and 1. 1 represents a wall and 0 represents a path. The objective of the maze is to reach the bottom right corner from the top left corner. You can only go in 4 directions - up, down, left or right. Find if a path exists.",
+  example: "Input: [[0, 0, 1], [1, 0, 0], [0, 0, 0]] Expected Output: true (a path exists from top-left to bottom-right)",
+  display_date: display_date
 )
+
+test_cases = [
+  { input_type: 'array', input_value: [ [ 0, 0, 1 ], [ 1, 0, 0 ], [ 0, 0, 0 ] ], expected_output_type: 'boolean', expected_output_value: true },
+  { input_type: 'array', input_value: [ [ 0, 1, 0 ], [ 0, 1, 0 ], [ 0, 0, 0 ] ], expected_output_type: 'boolean', expected_output_value: true },
+  { input_type: 'array', input_value: [ [ 0, 0, 0 ], [ 1, 1, 1 ], [ 0, 0, 0 ] ], expected_output_type: 'boolean', expected_output_value: false },
+  { input_type: 'array', input_value: [ [ 0, 1 ], [ 1, 0 ] ], expected_output_type: 'boolean', expected_output_value: false },
+  { input_type: 'array', input_value: [ [ 0, 0, 0 ], [ 0, 1, 0 ], [ 0, 0, 0 ] ], expected_output_type: 'boolean', expected_output_value: true }
+]
 
 prompt.test_suite = TestSuite.create()
 ts = prompt.test_suite
 
-test_cases = [
-  { input_type: 'array', input_value: [[1, 2, 3, 4, 5], 3], expected_output_type: 'integer', expected_output_value: 2 },
-  { input_type: 'array', input_value: [[1, 2, 3, 4, 5], 6], expected_output_type: 'integer', expected_output_value: -1 },
-  { input_type: 'array', input_value: [[1, 3, 5, 7, 9], 5], expected_output_type: 'integer', expected_output_value: 2 },
-  { input_type: 'array', input_value: [[1, 3, 5, 7, 9, 11], 1], expected_output_type: 'integer', expected_output_value: 0 },
-  { input_type: 'array', input_value: [[], 5], expected_output_type: 'integer', expected_output_value: -1 }
-]
-
 test_cases.each do |tc|
   ts.test_cases.create!(tc)
 end
-
-
-## Group Anagrams
-
-prompt = Prompt.create(
-  title: "Group Anagrams",
-  content: "Write a function solve that groups an array of strings based on whether they are anagrams of each other. Return an array of arrays, where each inner array contains a group of anagrams.",
-  example: "Input: ['eat', 'tea', 'tan', 'ate', 'nat', 'bat'] Expected Output: [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]",
-  display_date: Date.current + 11.days
-)
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
-
-test_cases = [
-  { input_type: 'array', input_value: ['eat', 'tea', 'tan', 'ate', 'nat', 'bat'], expected_output_type: 'array', expected_output_value: [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']] },
-  { input_type: 'array', input_value: ['listen', 'silent', 'enlist'], expected_output_type: 'array', expected_output_value: [['listen', 'silent', 'enlist']] },
-  { input_type: 'array', input_value: ['a'], expected_output_type: 'array', expected_output_value: [['a']] },
-  { input_type: 'array', input_value: [], expected_output_type: 'array', expected_output_value: [] },
-  { input_type: 'array', input_value: ['hello', 'world', 'ruby'], expected_output_type: 'array', expected_output_value: [['hello'], ['world'], ['ruby']] }
-]
-
-test_cases.each do |tc|
-  ts.test_cases.create!(tc)
-end
-
-
-##  Roman to Integer
-
-prompt = Prompt.create(
-  title: "Roman to Integer",
-  content: "Write a function solve that converts a Roman numeral string to an integer. Roman numerals are represented by combinations of letters from the Latin alphabet (I=1, V=5, X=10, L=50, C=100, D=500, M=1000). Subtraction is used when a smaller numeral precedes a larger one (e.g., IV = 4).",
-  example: "Input: 'XIV' Expected Output: 14",
-  display_date: Date.current + 12.days
-)
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
-
-test_cases = [
-  { input_type: 'string', input_value: 'XIV', expected_output_type: 'integer', expected_output_value: 14 },
-  { input_type: 'string', input_value: 'MCMXCIV', expected_output_type: 'integer', expected_output_value: 1994 },
-  { input_type: 'string', input_value: 'III', expected_output_type: 'integer', expected_output_value: 3 },
-  { input_type: 'string', input_value: 'IX', expected_output_type: 'integer', expected_output_value: 9 },
-  { input_type: 'string', input_value: 'LVIII', expected_output_type: 'integer', expected_output_value: 58 }
-]
-
-test_cases.each do |tc|
-  ts.test_cases.create!(tc)
-end
-
-
-## Longest Common Prefix
-
-prompt = Prompt.create(
-  title: "Longest Common Prefix",
-  content: "Write a function solve that finds the longest common prefix among an array of strings. If there is no common prefix, return an empty string.",
-  example: "Input: ['flower', 'flow', 'flight'] Expected Output: 'fl'",
-  display_date: Date.current + 13.days
-)
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
-
-test_cases = [
-  { input_type: 'array', input_value: ['flower', 'flow', 'flight'], expected_output_type: 'string', expected_output_value: 'fl' },
-  { input_type: 'array', input_value: ['dog', 'racecar', 'car'], expected_output_type: 'string', expected_output_value: '' },
-  { input_type: 'array', input_value: ['ruby', 'ruby', 'ruby'], expected_output_type: 'string', expected_output_value: 'ruby' },
-  { input_type: 'array', input_value: [''], expected_output_type: 'string', expected_output_value: '' },
-  { input_type: 'array', input_value: ['prefix', 'preface', 'preliminary', 'predict'], expected_output_type: 'string', expected_output_value: 'pre' }
-]
-
-test_cases.each do |tc|
-  ts.test_cases.create!(tc)
-end
-
-
-## Valid Sudoku
-
-prompt = Prompt.create(
-  title: "Valid Sudoku",
-  content: "Write a function solve that determines if a partially filled 9x9 Sudoku board is valid. A valid Sudoku must have no repeated digits in any row, column, or 3x3 subgrid. Empty cells are indicated with a '.'.",
-  example: "Input: [['5', '3', '.', '.', '7', '.', '.', '.', '.'], ['6', '.', '.', '1', '9', '5', '.', '.', '.'], ['.', '9', '8', '.', '.', '.', '.', '6', '.'], ['8', '.', '.', '.', '6', '.', '.', '.', '3'], ['4', '.', '.', '8', '.', '3', '.', '.', '1'], ['7', '.', '.', '.', '2', '.', '.', '.', '6'], ['.', '6', '.', '.', '.', '.', '2', '8', '.'], ['.', '.', '.', '4', '1', '9', '.', '.', '5'], ['.', '.', '.', '.', '8', '.', '.', '7', '9']] Expected Output: true",
-  display_date: Date.current + 14.days
-)
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
-
-test_cases = [
-  { input_type: 'array', input_value: [['5', '3', '.', '.', '7', '.', '.', '.', '.'], ['6', '.', '.', '1', '9', '5', '.', '.', '.'], ['.', '9', '8', '.', '.', '.', '.', '6', '.'], ['8', '.', '.', '.', '6', '.', '.', '.', '3'], ['4', '.', '.', '8', '.', '3', '.', '.', '1'], ['7', '.', '.', '.', '2', '.', '.', '.', '6'], ['.', '6', '.', '.', '.', '.', '2', '8', '.'], ['.', '.', '.', '4', '1', '9', '.', '.', '5'], ['.', '.', '.', '.', '8', '.', '.', '7', '9']], expected_output_type: 'boolean', expected_output_value: true },
-  { input_type: 'array', input_value: [['8', '3', '.', '.', '7', '.', '.', '.', '.'], ['6', '.', '.', '1', '9', '5', '.', '.', '.'], ['.', '9', '8', '.', '.', '.', '.', '6', '.'], ['8', '.', '.', '.', '6', '.', '.', '.', '3'], ['4', '.', '.', '8', '.', '3', '.', '.', '1'], ['7', '.', '.', '.', '2', '.', '.', '.', '6'], ['.', '6', '.', '.', '.', '.', '2', '8', '.'], ['.', '.', '.', '4', '1', '9', '.', '.', '5'], ['.', '.', '.', '.', '8', '.', '.', '7', '9']], expected_output_type: 'boolean', expected_output_value: false },
-  { input_type: 'array', input_value: [['.', '.', '.', '.', '.', '.', '.', '.', '.'], ['.', '.', '.', '.', '.', '.', '.', '.', '.'], ['.', '.', '.', '.', '.', '.', '.', '.', '.'], ['.', '.', '.', '.', '.', '.', '.', '.', '.'], ['.', '.', '.', '.', '.', '.', '.', '.', '.'], ['.', '.', '.', '.', '.', '.', '.', '.', '.'], ['.', '.', '.', '.', '.', '.', '.', '.', '.'], ['.', '.', '.', '.', '.', '.', '.', '.', '.'], ['.', '.', '.', '.', '.', '.', '.', '.', '.']], expected_output_type: 'boolean', expected_output_value: true },
-  { input_type: 'array', input_value: [['1', '2', '3', '4', '5', '6', '7', '8', '9'], ['2', '3', '4', '5', '6', '7', '8', '9', '1'], ['3', '4', '5', '6', '7', '8', '9', '1', '2'], ['4', '5', '6', '7', '8', '9', '1', '2', '3'], ['5', '6', '7', '8', '9', '1', '2', '3', '4'], ['6', '7', '8', '9', '1', '2', '3', '4', '5'], ['7', '8', '9', '1', '2', '3', '4', '5', '6'], ['8', '9', '1', '2', '3', '4', '5', '6', '7'], ['9', '1', '2', '3', '4', '5', '6', '7', '8']], expected_output_type: 'boolean', expected_output_value: false },
-  { input_type: 'array', input_value: [['1', '2', '3', '4', '5', '6', '7', '8', '9'], ['4', '5', '6', '7', '8', '9', '1', '2', '3'], ['7', '8', '9', '1', '2', '3', '4', '5', '6'], ['2', '3', '4', '5', '6', '7', '8', '9', '1'], ['5', '6', '7', '8', '9', '1', '2', '3', '4'], ['8', '9', '1', '2', '3', '4', '5', '6', '7'], ['3', '4', '5', '6', '7', '8', '9', '1', '2'], ['6', '7', '8', '9', '1', '2', '3', '4', '5'], ['9', '1', '2', '3', '4', '5', '6', '7', '8']], expected_output_type: 'boolean', expected_output_value: true }
-]
-
-test_cases.each do |tc|
-  ts.test_cases.create!(tc)
-end
-
-
-## Max Subarray Sum
-
-prompt = Prompt.create(
-  title: "Max Subarray Sum",
-  content: "Write a function solve that finds the contiguous subarray with the largest sum within an array of integers and returns the sum. A subarray must contain at least one element.",
-  example: "Input: [-2, 1, -3, 4, -1, 2, 1, -5, 4] Expected Output: 6 (subarray [4, -1, 2, 1])",
-  display_date: Date.current + 15.days
-)
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
-
-test_cases = [
-  { input_type: 'array', input_value: [-2, 1, -3, 4, -1, 2, 1, -5, 4], expected_output_type: 'integer', expected_output_value: 6 },
-  { input_type: 'array', input_value: [1], expected_output_type: 'integer', expected_output_value: 1 },
-  { input_type: 'array', input_value: [5, 4, -1, 7, 8], expected_output_type: 'integer', expected_output_value: 23 },
-  { input_type: 'array', input_value: [-1, -2, -3, -4], expected_output_type: 'integer', expected_output_value: -1 },
-  { input_type: 'array', input_value: [-2, -1, -3, -4, -1, -2, -1, -5, -4], expected_output_type: 'integer', expected_output_value: -1 }
-]
-
-test_cases.each do |tc|
-  ts.test_cases.create!(tc)
-end
-
-
-
-## Implement Queue using Stacks
-
-prompt = Prompt.create(
-  title: "Implement Queue using Stacks",
-  content: "Write a class `MyQueue` that implements a queue using only two stacks. Operations should include: push (to back of queue), peek (at front of queue), pop (from front of queue), and empty (returns boolean).",
-  example: "Input: ['MyQueue', 'push', 'push', 'peek', 'pop', 'empty'], [[], [1], [2], [], [], []] Expected Output: [null, null, null, 1, 1, false]",
-  display_date: Date.current + 16.days
-)
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
-
-test_cases = [
-  { input_type: 'array', input_value: [['MyQueue', 'push', 'push', 'peek', 'pop', 'empty'], [[], [1], [2], [], [], []]], expected_output_type: 'array', expected_output_value: [nil, nil, nil, 1, 1, false] },
-  { input_type: 'array', input_value: [['MyQueue', 'push', 'pop', 'empty'], [[], [1], [], []]], expected_output_type: 'array', expected_output_value: [nil, nil, 1, true] },
-  { input_type: 'array', input_value: [['MyQueue', 'push', 'push', 'push', 'pop', 'pop', 'pop', 'empty'], [[], [1], [2], [3], [], [], [], []]], expected_output_type: 'array', expected_output_value: [nil, nil, nil, nil, 1, 2, 3, true] },
-  { input_type: 'array', input_value: [['MyQueue', 'empty', 'push', 'empty'], [[], [], [1], []]], expected_output_type: 'array', expected_output_value: [nil, true, nil, false] },
-  { input_type: 'array', input_value: [['MyQueue', 'push', 'peek', 'peek', 'pop', 'push', 'pop', 'peek', 'empty'], [[], [5], [], [], [], [10], [], [], []]], expected_output_type: 'array', expected_output_value: [nil, nil, 5, 5, 5, nil, 10, nil, true] }
-]
-
-test_cases.each do |tc|
-  ts.test_cases.create!(tc)
-end
-
-
-##  First Unique Character
-
-prompt = Prompt.create(
-  title: "First Unique Character",
-  content: "Write a function solve that takes a string and returns the index of the first non-repeating character in it. If there is no non-repeating character, return -1.",
-  example: "Input: 'leetcode' Expected Output: 0 (since 'l' is the first non-repeating character)",
-  display_date: Date.current + 17.days
-)
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
-
-test_cases = [
-  { input_type: 'string', input_value: 'leetcode', expected_output_type: 'integer', expected_output_value: 0 },
-  { input_type: 'string', input_value: 'loveleetcode', expected_output_type: 'integer', expected_output_value: 2 },
-  { input_type: 'string', input_value: 'aabb', expected_output_type: 'integer', expected_output_value: -1 },
-  { input_type: 'string', input_value: '', expected_output_type: 'integer', expected_output_value: -1 },
-  { input_type: 'string', input_value: 'z', expected_output_type: 'integer', expected_output_value: 0 }
-]
-
-test_cases.each do |tc|
-  ts.test_cases.create!(tc)
-end
-
-
-## Reverse Words in String
-
-prompt = Prompt.create(
-  title: "Reverse Words in String",
-  content: "Write a function solve that reverses the order of words in a string. A word is defined as a sequence of non-space characters. The words in s will be separated by at least one space. Return the reversed string with a single space between words, and no leading or trailing spaces.",
-  example: "Input: 'the sky is blue' Expected Output: 'blue is sky the'",
-  display_date: Date.current + 18.days
-)
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
-
-test_cases = [
-  { input_type: 'string', input_value: 'the sky is blue', expected_output_type: 'string', expected_output_value: 'blue is sky the' },
-  { input_type: 'string', input_value: '  hello world  ', expected_output_type: 'string', expected_output_value: 'world hello' },
-  { input_type: 'string', input_value: 'a good   example', expected_output_type: 'string', expected_output_value: 'example good a' },
-  { input_type: 'string', input_value: 'ruby is awesome', expected_output_type: 'string', expected_output_value: 'awesome is ruby' },
-  { input_type: 'string', input_value: 'single', expected_output_type: 'string', expected_output_value: 'single' }
-]
-
-test_cases.each do |tc|
-  ts.test_cases.create!(tc)
-end
-
-
-## LRU Cache
-
-prompt = Prompt.create(
-  title: "LRU Cache",
-  content: "Implement an `LRUCache` class that supports get and put operations. The cache should have a fixed capacity and when the capacity is exceeded, it should evict the least recently used item. The `get` method should retrieve a value for a key, or return -1 if not found. The `put` method should add or update a key-value pair and evict items if necessary.",
-  example: "Input: ['LRUCache', 'put', 'put', 'get', 'put', 'get', 'put', 'get', 'get', 'get'], [[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]] Expected Output: [null, null, null, 1, null, -1, null, -1, 3, 4]",
-  display_date: Date.current + 19.days
-)
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
-
-test_cases = [
-  { input_type: 'array', input_value: [['LRUCache', 'put', 'put', 'get', 'put', 'get', 'put', 'get', 'get', 'get'], [[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]], expected_output_type: 'array', expected_output_value: [nil, nil, nil, 1, nil, -1, nil, -1, 3, 4] },
-  { input_type: 'array', input_value: [['LRUCache', 'put', 'get'], [[1], [1, 1], [1]]], expected_output_type: 'array', expected_output_value: [nil, nil, 1] },
-  { input_type: 'array', input_value: [['LRUCache', 'put', 'put', 'put', 'get'], [[2], [1, 1], [2, 2], [3, 3], [1]]], expected_output_type: 'array', expected_output_value: [nil, nil, nil, nil, -1] },
-  { input_type: 'array', input_value: [['LRUCache', 'put', 'put', 'get', 'get', 'put', 'get', 'get', 'get'], [[2], [1, 1], [2, 2], [1], [2], [3, 3], [2], [3], [1]]], expected_output_type: 'array', expected_output_value: [nil, nil, nil, 1, 2, nil, 2, 3, -1] },
-  { input_type: 'array', input_value: [['LRUCache', 'put', 'put', 'put', 'put', 'get', 'get'], [[2], [2, 1], [1, 1], [2, 3], [4, 1], [1], [2]]], expected_output_type: 'array', expected_output_value: [nil, nil, nil, nil, nil, -1, 3] }
-]
-
-test_cases.each do |tc|
-  ts.test_cases.create!(tc)
-end
-
-
-## Implement Set Data Structure
-
-prompt = Prompt.create(
-  title: "Implement Set Data Structure",
-  content: "Create a class `MySet` that mimics the behavior of a mathematical set. It should support operations: add (adds an element), remove (removes an element), contains (checks if an element exists), and size (returns the number of elements).",
-  example: "Input: ['MySet', 'add', 'add', 'contains', 'contains', 'size', 'remove', 'contains', 'size'], [[], [1], [2], [1], [3], [], [1], [1], []] Expected Output: [null, null, null, true, false, 2, null, false, 1]",
-  display_date: Date.current + 20.days
-)
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
-
-test_cases = [
-  { input_type: 'array', input_value: [['MySet', 'add', 'add', 'contains', 'contains', 'size', 'remove', 'contains', 'size'], [[], [1], [2], [1], [3], [], [1], [1], []]], expected_output_type: 'array', expected_output_value: [nil, nil, nil, true, false, 2, nil, false, 1] },
-  { input_type: 'array', input_value: [['MySet', 'add', 'add', 'add', 'size', 'remove', 'size'], [[], [1], [1], [2], [], [2], []]], expected_output_type: 'array', expected_output_value: [nil, nil, nil, nil, 2, nil, 1] },
-  { input_type: 'array', input_value: [['MySet', 'add', 'add', 'remove', 'add', 'size', 'contains', 'contains', 'contains'], [[], ['a'], ['b'], ['a'], ['c'], [], ['a'], ['b'], ['c']]], expected_output_type: 'array', expected_output_value: [nil, nil, nil, nil, nil, 2, false, true, true] },
-  { input_type: 'array', input_value: [['MySet', 'size', 'contains', 'remove', 'size'], [[], [], [1], [1], []]], expected_output_type: 'array', expected_output_value: [nil, 0, false, nil, 0] },
-  { input_type: 'array', input_value: [['MySet', 'add', 'add', 'add', 'add', 'add', 'size', 'remove', 'remove', 'size'], [[], [1], [2], [3], [4], [5], [], [1], [5], []]], expected_output_type: 'array', expected_output_value: [nil, nil, nil, nil, nil, nil, 5, nil, nil, 3] }
-]
-
-test_cases.each do |tc|
-  ts.test_cases.create!(tc)
-end
-
-
-## Valid Bracket Sequence
-
-prompt = Prompt.create(
-  title: "Valid Bracket Sequence",
-  content: "Write a function solve that takes a string of brackets and determines if the sequence forms a valid bracket sequence. Return true if the sequence is valid, false otherwise. Valid brackets are '()', '{}', and '[]'.",
-  example: "Input: '{[()]}' Expected Output: true",
-  display_date: Date.current + 21.days
-)
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
-
-test_cases = [
-  { input_type: 'string', input_value: '{[()]}', expected_output_type: 'boolean', expected_output_value: true },
-  { input_type: 'string', input_value: '([)]', expected_output_type: 'boolean', expected_output_value: false },
-  { input_type: 'string', input_value: '([])', expected_output_type: 'boolean', expected_output_value: true },
-  { input_type: 'string', input_value: '}', expected_output_type: 'boolean', expected_output_value: false },
-  { input_type: 'string', input_value: '({[{[()]}]})', expected_output_type: 'boolean', expected_output_value: true }
-]
-
-test_cases.each do |tc|
-  ts.test_cases.create!(tc)
-end
-
-
-## Implement Trie (Prefix Tree)
-
-prompt = Prompt.create(
-  title: "Implement Trie (Prefix Tree)",
-  content: "Implement a Trie (Prefix Tree) data structure. The class should support insert, search, and startsWith methods. The insert method adds a word to the trie, search checks if the word exists, and startsWith checks if there is any word that starts with the given prefix.",
-  example: "Input: ['Trie', 'insert', 'search', 'search', 'startsWith', 'insert', 'search'], [[], ['apple'], ['apple'], ['app'], ['app'], ['app'], ['app']] Expected Output: [null, null, true, false, true, null, true]",
-  display_date: Date.current + 22.days
-)
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
-
-test_cases = [
-  { input_type: 'array', input_value: [['Trie', 'insert', 'search', 'search', 'startsWith', 'insert', 'search'], [[], ['apple'], ['apple'], ['app'], ['app'], ['app'], ['app']]], expected_output_type: 'array', expected_output_value: [nil, nil, true, false, true, nil, true] },
-  { input_type: 'array', input_value: [['Trie', 'insert', 'search', 'startsWith'], [[], ['hello'], ['hell'], ['hell']]], expected_output_type: 'array', expected_output_value: [nil, nil, false, true] },
-  { input_type: 'array', input_value: [['Trie', 'insert', 'insert', 'search', 'search', 'search', 'startsWith', 'startsWith'], [[], ['dog'], ['dot'], ['dog'], ['dot'], ['do'], ['do'], ['daddy']]], expected_output_type: 'array', expected_output_value: [nil, nil, nil, true, true, false, true, false] },
-  { input_type: 'array', input_value: [['Trie', 'insert', 'insert', 'insert', 'search', 'search', 'startsWith', 'startsWith', 'startsWith'], [[], ['code'], ['coder'], ['coding'], ['cod'], ['coder'], ['co'], ['codi'], ['codin']]], expected_output_type: 'array', expected_output_value: [nil, nil, nil, nil, false, true, true, true, true] },
-  { input_type: 'array', input_value: [['Trie', 'insert', 'search', 'startsWith', 'startsWith', 'insert', 'search', 'startsWith'], [[], [''], [''], [''], ['a'], ['a'], ['a'], ['a']]], expected_output_type: 'array', expected_output_value: [nil, nil, true, true, false, nil, true, true] }
-]
-
-test_cases.each do |tc|
-  ts.test_cases.create!(tc)
-end
-
-
-## Two Sum
-
-prompt = Prompt.create(
-  title: "Two Sum",
-  content: "Write a function solve that takes an array of integers and a target value, and returns the indices of the two numbers that add up to the target. You may assume that each input has exactly one solution, and you cannot use the same element twice.",
-  example: "Input: [2, 7, 11, 15], 9 Expected Output: [0, 1]",
-  display_date: Date.current + 23.days
-)
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
-
-test_cases = [
-  { input_type: 'array', input_value: [[2, 7, 11, 15], 9], expected_output_type: 'array', expected_output_value: [0, 1] },
-  { input_type: 'array', input_value: [[3, 2, 4], 6], expected_output_type: 'array', expected_output_value: [1, 2] },
-  { input_type: 'array', input_value: [[3, 3], 6], expected_output_type: 'array', expected_output_value: [0, 1] },
-  { input_type: 'array', input_value: [[1, 5, 8, 3, 9, 2], 10], expected_output_type: 'array', expected_output_value: [1, 2] },
-  { input_type: 'array', input_value: [[-1, -2, -3, -4, -5], -8], expected_output_type: 'array', expected_output_value: [2, 4] }
-]
-
-test_cases.each do |tc|
-  ts.test_cases.create!(tc)
-end
-
-
-## Rotate Image
-
-prompt = Prompt.create(
-  title: "Rotate Image",
-  content: "Write a function solve that rotates an n × n 2D matrix representing an image by 90 degrees clockwise in-place. The matrix is represented as arrays of arrays, where the outer array is rows and the inner arrays are columns.",
-  example: "Input: [[1, 2, 3], [4, 5, 6], [7, 8, 9]] Expected Output: [[7, 4, 1], [8, 5, 2], [9, 6, 3]]",
-  display_date: Date.current + 24.days
-)
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
-
-test_cases = [
-  { input_type: 'array', input_value: [[1, 2, 3], [4, 5, 6], [7, 8, 9]], expected_output_type: 'array', expected_output_value: [[7, 4, 1], [8, 5, 2], [9, 6, 3]] },
-  { input_type: 'array', input_value: [[5, 1, 9, 11], [2, 4, 8, 10], [13, 3, 6, 7], [15, 14, 12, 16]], expected_output_type: 'array', expected_output_value: [[15, 13, 2, 5], [14, 3, 4, 1], [12, 6, 8, 9], [16, 7, 10, 11]] },
-  { input_type: 'array', input_value: [[1]], expected_output_type: 'array', expected_output_value: [[1]] },
-  { input_type: 'array', input_value: [[1, 2], [3, 4]], expected_output_type: 'array', expected_output_value: [[3, 1], [4, 2]] },
-  { input_type: 'array', input_value: [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]], expected_output_type: 'array', expected_output_value: [[13, 9, 5, 1], [14, 10, 6, 2], [15, 11, 7, 3], [16, 12, 8, 4]] }
-]
-
-test_cases.each do |tc|
-  ts.test_cases.create!(tc)
-end
-
-
-## Subarray Sum Equals K
-
-prompt = Prompt.create(
-  title: "Subarray Sum Equals K",
-  content: "Write a function solve that takes an array of integers and an integer k, and returns the total number of continuous subarrays whose sum equals k.",
-  example: "Input: [1, 1, 1], 2 Expected Output: 2",
-  display_date: Date.current + 25.days
-)
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
-
-test_cases = [
-  { input_type: 'array', input_value: [[1, 1, 1], 2], expected_output_type: 'integer', expected_output_value: 2 },
-  { input_type: 'array', input_value: [[1, 2, 3], 3], expected_output_type: 'integer', expected_output_value: 2 },
-  { input_type: 'array', input_value: [[1], 0], expected_output_type: 'integer', expected_output_value: 0 },
-  { input_type: 'array', input_value: [[1, -1, 0], 0], expected_output_type: 'integer', expected_output_value: 3 },
-  { input_type: 'array', input_value: [[3, 4, 7, 2, -3, 1, 4, 2], 7], expected_output_type: 'integer', expected_output_value: 4 }
-]
-
-test_cases.each do |tc|
-  ts.test_cases.create!(tc)
-end
-
-
-##  Merge Intervals
-
-prompt = Prompt.create(
-  title: "Merge Intervals",
-  content: "Write a function solve that takes an array of intervals and merges all overlapping intervals. Return the merged intervals sorted by their start time.",
-  example: "Input: [[1, 3], [2, 6], [8, 10], [15, 18]] Expected Output: [[1, 6], [8, 10], [15, 18]]",
-  display_date: Date.current + 26.days
-)
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
-
-test_cases = [
-  { input_type: 'array', input_value: [[1, 3], [2, 6], [8, 10], [15, 18]], expected_output_type: 'array', expected_output_value: [[1, 6], [8, 10], [15, 18]] },
-  { input_type: 'array', input_value: [[1, 4], [4, 5]], expected_output_type: 'array', expected_output_value: [[1, 5]] },
-  { input_type: 'array', input_value: [[1, 4], [0, 4]], expected_output_type: 'array', expected_output_value: [[0, 4]] },
-  { input_type: 'array', input_value: [[1, 4], [2, 3]], expected_output_type: 'array', expected_output_value: [[1, 4]] },
-  { input_type: 'array', input_value: [[1, 10], [2, 6], [3, 5], [7, 9]], expected_output_type: 'array', expected_output_value: [[1, 10]] }
-]
-
-test_cases.each do |tc|
-  ts.test_cases.create!(tc)
-end
-
-
-## Serialize and Deserialize Binary Tree
-
-prompt = Prompt.create(
-  title: "Serialize and Deserialize Binary Tree",
-  content: "Implement two methods: `serialize` and `deserialize`. The `serialize` method converts a binary tree to a string representation, and the `deserialize` method reconstructs the tree from the string. Each node contains an integer value.",
-  example: "Input: root = [1, 2, 3, null, null, 4, 5] Operations: [tree = deserialize(serialize(root))] Expected Output: [1, 2, 3, null, null, 4, 5]",
-  display_date: Date.current + 27.days
-)
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
-
-test_cases = [
-  { input_type: 'array', input_value: [[1, 2, 3, nil, nil, 4, 5]], expected_output_type: 'array', expected_output_value: [1, 2, 3, nil, nil, 4, 5] },
-  { input_type: 'array', input_value: [[]], expected_output_type: 'array', expected_output_value: [] },
-  { input_type: 'array', input_value: [[1]], expected_output_type: 'array', expected_output_value: [1] },
-  { input_type: 'array', input_value: [[1, 2, 3, 4, 5]], expected_output_type: 'array', expected_output_value: [1, 2, 3, 4, 5] },
-  { input_type: 'array', input_value: [[1, nil, 2, nil, 3, nil, 4, nil, 5]], expected_output_type: 'array', expected_output_value: [1, nil, 2, nil, 3, nil, 4, nil, 5] }
-]
-
-test_cases.each do |tc|
-  ts.test_cases.create!(tc)
-end
-
-
-## Design an Event Emitter
-
-prompt = Prompt.create(
-  title: "Design an Event Emitter",
-  content: "Design an `EventEmitter` class that manages event subscriptions and publishes events. The class should support: `subscribe(event_name, callback)` which returns a subscription ID, `unsubscribe(id)` to remove a specific subscription, and `emit(event_name, args)` to trigger all callbacks for that event name with the given arguments.",
-  example: "Input: ['EventEmitter', 'subscribe', 'emit', 'unsubscribe', 'emit'], [[], ['click', function(x) { return x * 2; }], ['click', [5]], [0], ['click', [10]]] Expected Output: [null, 0, [10], null, []]",
-  display_date: Date.current + 28.days
-)
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
-
-test_cases = [
-  { input_type: 'array', input_value: [['EventEmitter', 'subscribe', 'emit', 'unsubscribe', 'emit'], [[], ['click', 'function(x) { return x * 2; }'], ['click', [5]], [0], ['click', [10]]]], expected_output_type: 'array', expected_output_value: [nil, 0, [10], nil, []] },
-  { input_type: 'array', input_value: [['EventEmitter', 'subscribe', 'subscribe', 'emit', 'unsubscribe', 'emit'], [[], ['click', 'function(x) { return x + 1; }'], ['click', 'function(x) { return x * 2; }'], ['click', [5]], [0], ['click', [5]]]], expected_output_type: 'array', expected_output_value: [nil, 0, 1, [6, 10], nil, [10]] },
-  { input_type: 'array', input_value: [['EventEmitter', 'subscribe', 'emit', 'subscribe', 'emit', 'unsubscribe', 'emit'], [[], ['event1', 'function() { return "hello"; }'], ['event1', []], ['event2', 'function() { return "world"; }'], ['event2', []], [1], ['event2', []]]], expected_output_type: 'array', expected_output_value: [nil, 0, ["hello"], 1, ["world"], nil, []] },
-  { input_type: 'array', input_value: [['EventEmitter', 'subscribe', 'subscribe', 'subscribe', 'emit', 'unsubscribe', 'unsubscribe', 'emit'], [[], ['click', 'function(x) { return x; }'], ['click', 'function(x) { return x + 1; }'], ['click', 'function(x) { return x + 2; }'], ['click', [5]], [0], [2], ['click', [5]]]], expected_output_type: 'array', expected_output_value: [nil, 0, 1, 2, [5, 6, 7], nil, nil, [6]] },
-  { input_type: 'array', input_value: [['EventEmitter', 'subscribe', 'emit', 'emit', 'unsubscribe', 'emit'], [[], ['event', 'function(a, b) { return a + b; }'], ['event', [2, 3]], ['other', [1, 2]], [0], ['event', [2, 3]]]], expected_output_type: 'array', expected_output_value: [nil, 0, [5], [], nil, []] }
-]
-
-test_cases.each do |tc|
-  ts.test_cases.create!(tc)
-end
-
-## JSON Parser
-
-prompt = Prompt.create(
-  title: "JSON Parser",
-  content: "Write a function solve that parses a JSON string and returns the corresponding Ruby object. Support the basic JSON types: null, boolean, number, string, array, and object. You cannot use Ruby's built-in JSON parsing.",
-  example: "Input: '{\"name\":\"John\",\"age\":30,\"isStudent\":false,\"courses\":[\"Math\",\"English\"]}' Expected Output: {'name'=>'John', 'age'=>30, 'isStudent'=>false, 'courses'=>['Math', 'English']}",
-  display_date: Date.current + 29.days
-)
-
-prompt.test_suite = TestSuite.create()
-ts = prompt.test_suite
-
-test_cases = [
-  { input_type: 'string', input_value: '{"name":"John","age":30,"isStudent":false,"courses":["Math","English"]}', expected_output_type: 'hash', expected_output_value: {'name'=>'John', 'age'=>30, 'isStudent'=>false, 'courses'=>['Math', 'English']} },
-  { input_type: 'string', input_value: '[1,2,3,4,5]', expected_output_type: 'array', expected_output_value: [1, 2, 3, 4, 5] },
-  { input_type: 'string', input_value: 'true', expected_output_type: 'boolean', expected_output_value: true },
-  { input_type: 'string', input_value: '{"a":{"b":{"c":1}},"d":[1,2,3]}', expected_output_type: 'hash', expected_output_value: {'a'=>{'b'=>{'c'=>1}}, 'd'=>[1, 2, 3]} },
-  { input_type: 'string', input_value: '{"bool":true,"array":[false,null,123,"text"]}', expected_output_type: 'hash', expected_output_value: {'bool'=>true, 'array'=>[false, nil, 123, 'text']} }
-]
-
-test_cases.each do |tc|
-  ts.test_cases.create!(tc)
-end
-

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
+import Button from "@mui/material/Button";
 
 import { ruby } from "@codemirror/legacy-modes/mode/ruby";
 import CodeMirror from "@uiw/react-codemirror";
@@ -32,8 +33,11 @@ const CodeEditor = ({ onSubmit, loading, disableSubmit }) => {
         value={`def solve(input)
 end`}
         onChange={setAnswer}
-        height="200px"
+        height="auto"
+        minHeight="200px"
+        maxHeight="400px"
         extensions={[StreamLanguage.define(ruby)]}
+        className="auto-expand-codemirror"
         basicSetup={{
           foldGutter: false,
           dropCursor: false,
@@ -41,13 +45,20 @@ end`}
           indentOnInput: false,
         }}
       />
-      <button
+
+      <Button
+        variant="contained"
+        color="primary"
         onClick={handleSubmit}
         type="button"
         disabled={loading || isMaxAttempts || disableSubmit}
+        sx={{
+          padding: "12px 24px",
+          margin: 2,
+        }}
       >
-        Submit Test
-      </button>
+        Submit
+      </Button>
     </div>
   );
 };

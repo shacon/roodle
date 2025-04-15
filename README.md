@@ -29,7 +29,7 @@ TestSuite ||--o{ TestCase : "contains many"
 
 ## Tech Stack
 
-- Frontend: React.js, JavaScript, HTML, CSS
+- Frontend: React.js, JavaScript, HTML, CSS, Material UI v5 with Emotion
 - Backend: Ruby on Rails API
 - Database: PostgreSQL
 - Containerization: Docker
@@ -40,11 +40,25 @@ TestSuite ||--o{ TestCase : "contains many"
 Install front end dependencies
 `npm install`
 
+This project includes an .nvmrc file so if using nvm, you can do
+`nvm use`
+to grab the correct node version
+
 Install backend dependencies
 `bundle install`
 
+## Running Locally
+
 Spin up the app
 `bin/dev`
+
+## Deployment
+
+Roodle is currently deployed on my personal raspberry pi.
+
+Steps to make changes:
+1. 
+
 
 
 ## TODO

@@ -13,8 +13,12 @@
     "@codemirror/legacy-modes": "^6.4.2",
     "@codemirror/state": "^6.5.2",
     "@codemirror/view": "^6.36.2",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@fontsource/audiowide": "^5.2.5",
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.12",
+    "@mui/material": "^7.0.1",
     "@popperjs/core": "^2.11.8",
     "@rails/webpacker": "5.4.4",
     "@uiw/codemirror-extensions-basic-setup": "^4.23.8",
@@ -36,6 +40,7 @@
   "devDependencies": {
     "esbuild": "^0.24.2",
     "nodemon": "^3.1.9",
+    "sass": "^1.86.3",
     "webpack-dev-server": "^3"
   }
 }
