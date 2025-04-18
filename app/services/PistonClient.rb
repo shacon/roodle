@@ -2,16 +2,15 @@ class PistonClient
   PISTON_API_URL = "https://emkc.org/api/v2/piston/execute"
 
 
-  def self.execution_line(expected_output_type)
-    execution_line = %Q[\n solution = solve(ARGV[0])]
-    execution_line += %Q(\n puts solution )
-    execution_line += %Q(\n puts solution.class )
+  def self.execution_line(input, expected_output_type)
+    execution_line = %Q[\n require 'json' \nsolution = solve(JSON.parse(ARGV[0]))]
+    execution_line += %Q(\n puts solution.to_json )
     execution_line
   end
 
   def self.call(input:, expected_output_type:, content:)
     normalized_code = content.gsub("\r\n", "\n")
-    execution_line = execution_line(expected_output_type)
+    execution_line = execution_line(input, expected_output_type)
     final_code = normalized_code + execution_line
     payload = {
       language: "ruby",
@@ -29,7 +28,7 @@ class PistonClient
       compile_memory_limit: -1,
       run_memory_limit: -1
     }
-
+    Rails.logger.info("Sending payload to piston api: #{payload.to_json}")
     response = HTTParty.post(PISTON_API_URL,
     headers: {
       "Content-Type" => "application/json"

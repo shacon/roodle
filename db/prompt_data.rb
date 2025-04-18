@@ -85,8 +85,8 @@ test_cases = [
   { input_type: 'array', input_value: [ [ 1, 2, 3, 4, 5 ], 9 ], expected_output_type: 'array', expected_output_value: [ 3, 4 ] },
   { input_type: 'array', input_value: [ [ 2, 7, 11, 15 ], 9 ], expected_output_type: 'array', expected_output_value: [ 0, 1 ] },
   { input_type: 'array', input_value: [ [ 1, 3, 4, 5, 7, 10, 11 ], 11 ], expected_output_type: 'array', expected_output_value: [ 0, 5 ] },
-  { input_type: 'array', input_value: [ [ -3, -1, 0, 2, 6 ], 3 ], expected_output_type: 'array', expected_output_value: [ 1, 4 ] },
-  { input_type: 'array', input_value: [ [ 1, 2, 3, 4 ], 8 ], expected_output_type: 'array', expected_output_value: [ 2, 3 ] }
+  { input_type: 'array', input_value: [ [ -3, -1, 1, 2, 6 ], 3 ], expected_output_type: 'array', expected_output_value: [ 2, 3 ] },
+  { input_type: 'array', input_value: [ [ 1, 2, 3, 4 ], 8 ], expected_output_type: 'array', expected_output_value: [  ] }
 ]
 
 prompt.test_suite = TestSuite.create()
