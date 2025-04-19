@@ -72,8 +72,7 @@ const Home = () => {
             latestResults.every((r) => r.passed);
 
           console.log("All tests passed:", allTestsPassed);
-          setAllTestsPassed(allTestsPassed); // Add this state variable
-          // TODO - check stored results to see if last result was all passing and if so show passed message
+          setAllTestsPassed(allTestsPassed);
         } else {
           throw new Error("Network response was not ok.");
         }
@@ -102,27 +101,32 @@ const Home = () => {
       });
 
       const data = await response.json();
-      setResults(data.results);
-      const lastFailed = [...data.results]
-        .reverse()
-        .find((result) => result.passed === false);
-      if (lastFailed) {
-        setLastTestCaseResults({
-          expected: lastFailed.expected_output_value,
-          output: lastFailed.actual_output,
-          input: lastFailed.input,
-        });
+      if (response.ok) {
+        setResults(data.results);
+        const lastFailed = [...data.results]
+          .reverse()
+          .find((result) => result.passed === false);
+        if (lastFailed) {
+          setLastTestCaseResults({
+            expected: lastFailed.expected_output_value,
+            output: lastFailed.actual_output,
+            input: lastFailed.input,
+          });
+        }
+        const numTestCases = 5;
+
+        const latestResults = data.results.slice(-numTestCases);
+        const allTestsPassed =
+          latestResults.length === numTestCases &&
+          latestResults.every((r) => r.passed);
+
+        setAllTestsPassed(allTestsPassed);
+        setLoading(false);
+      } else {
+        throw new Error("Response error. Try again");
       }
-      const numTestCases = 5;
-
-      const latestResults = data.results.slice(-numTestCases);
-      const allTestsPassed =
-        latestResults.length === numTestCases &&
-        latestResults.every((r) => r.passed);
-
-      setAllTestsPassed(allTestsPassed);
-      setLoading(false);
     } catch (err) {
+      setLoading(false);
       console.log(err);
     }
   };

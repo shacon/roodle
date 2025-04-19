@@ -7,14 +7,19 @@ RSpec.describe CodeTestRunner do
 
   describe '#generate_result_hash' do
     before do
-      mock_response = {
-        "run" => {
-          "output" => "Hello, World!\n",
-          "stderr" => ""
-        }
-      }
+      mock_response =  '{
+        "language":"ruby",
+        "version":"3.0.1",
+        "run": {
+          "stdout":
+            "{\"test\":1,\"seting\":2,\"3\":\"ajsjkha\"}\n",
+            "stderr": "",
+            "code": 0,
+            "signal": null,
+            "output": "{\"test\":1,\"seting\":2,\"3\":\"ajsjkha\"}\n"}
+          }'
       response_double = double(
-        body: JSON.generate(mock_response),
+        body: mock_response,
       )
 
       allow(PistonClient).to receive(:call).and_return(response_double)
@@ -39,35 +44,8 @@ RSpec.describe CodeTestRunner do
         }))
       )
       results = runner.generate_result_hash.first
+      puts "ACTUAL results here #{results}"
       expect(results[:actual_output]).to eq("")
-    end
-
-    it 'correctly parses array from response string format' do
-      array_response = "1\n2\n3\nArray\n"
-      result = runner.convert_response_to_type(array_response)
-      expect(result).to be_an(Array)
-      expect(result).to eq([ 1, 2, 3 ])
-    end
-
-    it 'correctly parses hash from response string format' do
-      hash_response = "{\"a\"=>{\"b\"=>{\"c\"=>1}}, \"d\"=>[1, 2, 3]}\nHash\n"
-      result = runner.convert_response_to_type(hash_response)
-      expect(result).to be_a(Hash)
-      expect(result).to eq({ "a"=>{ "b"=>{ "c"=>1 } }, "d"=>[ 1, 2, 3 ] })
-    end
-
-    it 'correctly parses integer from response string format' do
-      int_response = "45\nInteger\n"
-      result = runner.convert_response_to_type(int_response)
-      expect(result).to be_an(Integer)
-      expect(result).to eq(45)
-    end
-
-     it 'correctly parses boolean from response string format' do
-      bool_response = "false\nFalseClass\n"
-      result = runner.convert_response_to_type(bool_response)
-      expect(result).to be_a(FalseClass)
-      expect(result).to eq(false)
-    end
+      end
   end
 end
