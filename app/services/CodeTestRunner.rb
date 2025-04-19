@@ -14,6 +14,7 @@ class CodeTestRunner
         content: @content
       )
       Rails.logger.info("Prepared input here: #{test_case.prepared_input}")
+      Rails.logger.info("Piston client response: #{response}")
       parsed_response = JSON.parse(response.body)
       actual_output = parsed_response["run"]["output"]
       error_status = parsed_response["run"]["stderr"]
@@ -45,7 +46,10 @@ class CodeTestRunner
 
   def convert_response_to_type(response)
     Rails.logger.info("Response withing the convert: #{response}")
-    JSON.parse(response)
+    unless response.empty?
+      JSON.parse(response)
+    end
+    response
   end
 
   def compare_output(expected_output_value, actual_output_value)
